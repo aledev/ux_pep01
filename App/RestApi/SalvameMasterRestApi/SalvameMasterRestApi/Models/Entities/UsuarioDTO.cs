@@ -9,64 +9,45 @@ namespace SalvameMasterRestApi.Models.Entities
     [Serializable]
     public class UsuarioDTO
     {
-        [JsonProperty("id")]
+        [JsonProperty("Id")]
         public long Id
         {
             get;
             set;
         }
 
-        [JsonProperty("usuario")]
-        public string Usuario
+        [JsonProperty("IdPersona")]
+        public long IdPersona
         {
             get;
             set;
         }
 
-        [JsonProperty("password")]
+
+
+        [JsonProperty("Trabajador")]
+        public TrabajadorDTO Trabajador
+        {
+            get;
+            set;
+        }
+
+        [JsonProperty("Password")]
         public string Password
         {
             get;
             set;
         }
 
-        [JsonProperty("nombre")]
-        public string Nombre
-        {
-            get;
-            set;
-        }
-
-        [JsonProperty("email")]
-        public string Email
-        {
-            get;
-            set;
-        }
-
-        [JsonProperty("idtipousuario")]
-        public short IdTipoUsuario
-        {
-            get;
-            set;
-        }
-
-        [JsonProperty("tipousuario")]
-        public string TipoUsuario
-        {
-            get;
-            set;
-        }
-
-        [JsonIgnore()]
+        [JsonProperty("FchCreate")]
         public DateTime FchCreate
         {
             get;
             set;
         }
 
-        [JsonIgnore()]
-        public DateTime? FchUpdate
+        [JsonProperty("IdEstado")]
+        public short IdEstado
         {
             get;
             set;

@@ -34,21 +34,19 @@ namespace SalvameMasterRestApi.Controllers
 
                 using (var dbContext = new salvameMasterEntities())
                 {
-                    userObj = (from u in dbContext.usuario
-                               from t in dbContext.tipo_usuario
-                               where u.usuario1 == user &&
-                                     u.password == pass &&
-                                     u.idtipousuario == t.id
+                    userObj = (from u in dbContext.Usuario1Set
+                               from t in dbContext.TipoPersona
+                               from p in dbContext.Persona
+                               where p.Email == user &&
+                                     u.Password == pass &&
+                                     u.IdPersona == p.Id &&
+                                     t.Id == p.IdTipoPersona
                                select new UsuarioDTO
                                {
-                                   Email = u.email,
-                                   FchCreate = u.fchcreate,
-                                   FchUpdate = u.fchupdate,
-                                   Id = u.id,
-                                   IdTipoUsuario = u.idtipousuario,
-                                   Nombre = u.nombre,
-                                   TipoUsuario = t.descripcion,
-                                   Usuario = u.usuario1
+                                   FchCreate = u.FchCreate,
+                                   Id = u.Id,
+                                   IdEstado = u.IdEstado,
+                                   IdPersona = p.Id
                                }).FirstOrDefault();
 
                     if (userObj != null)
@@ -57,6 +55,7 @@ namespace SalvameMasterRestApi.Controllers
             }
             catch (Exception ex)
             {
+
             }
 
             return jsonResult;

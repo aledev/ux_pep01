@@ -25,7 +25,17 @@ namespace SalvameMasterRestApi.Models.DBModel
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<tipo_usuario> tipo_usuario { get; set; }
-        public virtual DbSet<usuario> usuario { get; set; }
+        public virtual DbSet<Agendamiento> Agendamiento { get; set; }
+        public virtual DbSet<Estado> Estado { get; set; }
+        public virtual DbSet<FeedbackTrabajador> FeedbackTrabajador { get; set; }
+        public virtual DbSet<Inscripcion> Inscripcion { get; set; }
+        public virtual DbSet<MensajeSalida> MensajeSalida { get; set; }
+        public virtual DbSet<Persona> Persona { get; set; }
+        public virtual DbSet<Region> Region { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public virtual DbSet<TipoPersona> TipoPersona { get; set; }
+        public virtual DbSet<TipoTrabajador> TipoTrabajador { get; set; }
+        public virtual DbSet<Trabajador> Trabajador { get; set; }
+        public virtual DbSet<Usuario1> Usuario1Set { get; set; }
     }
 }

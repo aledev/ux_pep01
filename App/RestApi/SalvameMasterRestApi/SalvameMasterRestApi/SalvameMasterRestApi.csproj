@@ -201,6 +201,27 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\DBModel\Agendamiento.cs">
+      <DependentUpon>SalvameMasterModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DBModel\Estado.cs">
+      <DependentUpon>SalvameMasterModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DBModel\FeedbackTrabajador.cs">
+      <DependentUpon>SalvameMasterModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DBModel\Inscripcion.cs">
+      <DependentUpon>SalvameMasterModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DBModel\MensajeSalida.cs">
+      <DependentUpon>SalvameMasterModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DBModel\Persona.cs">
+      <DependentUpon>SalvameMasterModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DBModel\Region.cs">
+      <DependentUpon>SalvameMasterModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\DBModel\SalvameMasterModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -216,12 +237,24 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SalvameMasterModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\DBModel\tipo_usuario.cs">
+    <Compile Include="Models\DBModel\sysdiagrams.cs">
       <DependentUpon>SalvameMasterModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\DBModel\usuario.cs">
+    <Compile Include="Models\DBModel\TipoPersona.cs">
       <DependentUpon>SalvameMasterModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\DBModel\TipoTrabajador.cs">
+      <DependentUpon>SalvameMasterModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DBModel\Trabajador.cs">
+      <DependentUpon>SalvameMasterModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DBModel\Usuario1.cs">
+      <DependentUpon>SalvameMasterModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entities\AgendamientoDTO.cs" />
+    <Compile Include="Models\Entities\PersonaDTO.cs" />
+    <Compile Include="Models\Entities\TrabajadorDTO.cs" />
     <Compile Include="Models\Entities\UsuarioDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -5,9 +5,18 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="af46414e206e4f7aa60470a3e315fb47" Name="Diagram1">
-        <EntityTypeShape EntityType="SalvameMasterModel.tipo_usuario" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="SalvameMasterModel.usuario" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <AssociationConnector Association="SalvameMasterModel.FK_usuario_tipo_usuario" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="SalvameMasterModel.Agendamiento" Width="1.5" PointX="0.75" PointY="4.75" />
+        <EntityTypeShape EntityType="SalvameMasterModel.Estado" Width="1.5" PointX="2.75" PointY="4.75" />
+        <EntityTypeShape EntityType="SalvameMasterModel.FeedbackTrabajador" Width="1.5" PointX="4.75" PointY="4.75" />
+        <EntityTypeShape EntityType="SalvameMasterModel.Inscripcion" Width="1.5" PointX="5.75" PointY="0.75" />
+        <EntityTypeShape EntityType="SalvameMasterModel.MensajeSalida" Width="1.5" PointX="6.75" PointY="3.75" />
+        <EntityTypeShape EntityType="SalvameMasterModel.Persona" Width="1.5" PointX="2.75" PointY="7.75" />
+        <EntityTypeShape EntityType="SalvameMasterModel.Region" Width="1.5" PointX="7.75" PointY="0.75" />
+        <EntityTypeShape EntityType="SalvameMasterModel.sysdiagrams" Width="1.5" PointX="4.75" PointY="7.75" />
+        <EntityTypeShape EntityType="SalvameMasterModel.TipoPersona" Width="1.5" PointX="6.75" PointY="7.75" />
+        <EntityTypeShape EntityType="SalvameMasterModel.TipoTrabajador" Width="1.5" PointX="8.75" PointY="3.75" />
+        <EntityTypeShape EntityType="SalvameMasterModel.Trabajador" Width="1.5" PointX="8.75" PointY="6.75" />
+        <EntityTypeShape EntityType="SalvameMasterModel.Usuario1" Width="1.5" PointX="9.75" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

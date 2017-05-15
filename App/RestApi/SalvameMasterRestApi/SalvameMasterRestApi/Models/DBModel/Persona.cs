@@ -12,18 +12,17 @@ namespace SalvameMasterRestApi.Models.DBModel
     using System;
     using System.Collections.Generic;
     
-    public partial class tipo_usuario
+    public partial class Persona
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public tipo_usuario()
-        {
-            this.usuario = new HashSet<usuario>();
-        }
-    
-        public short id { get; set; }
-        public string descripcion { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<usuario> usuario { get; set; }
+        public long Id { get; set; }
+        public string Nombre { get; set; }
+        public string ApellidoPaterno { get; set; }
+        public string ApellidoMaterno { get; set; }
+        public string Email { get; set; }
+        public System.DateTime FchNacimiento { get; set; }
+        public System.DateTime FchRegistro { get; set; }
+        public string Sexo { get; set; }
+        public short IdTipoPersona { get; set; }
+        public short IdEstado { get; set; }
     }
 }
