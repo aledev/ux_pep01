@@ -26,5 +26,10 @@ namespace SalvameMasterRestApi.Models.DBModel
         public string Telefono { get; set; }
         public string Observacion { get; set; }
         public Nullable<short> IdEstado { get; set; }
+    
+        public virtual Estado Estado { get; set; }
+        public virtual Region Region { get; set; }
+        public virtual Trabajador Trabajador { get; set; }
+        public virtual Usuario Usuario { get; set; }
     }
 }

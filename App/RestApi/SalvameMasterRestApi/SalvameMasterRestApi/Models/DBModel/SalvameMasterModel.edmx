@@ -87,16 +87,6 @@
           <Property Name="Id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Descripcion" Type="varchar" MaxLength="100" Nullable="false" />
         </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="principal_id" Type="int" Nullable="false" />
-          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="version" Type="int" />
-          <Property Name="definition" Type="varbinary(max)" />
-        </EntityType>
         <EntityType Name="TipoPersona">
           <Key>
             <PropertyRef Name="Id" />
@@ -138,6 +128,198 @@
           <Property Name="FchCreate" Type="datetime" Nullable="false" />
           <Property Name="IdEstado" Type="smallint" Nullable="false" />
         </EntityType>
+        <Association Name="FK_Agendamiento_Estado">
+          <End Role="Estado" Type="Self.Estado" Multiplicity="0..1" />
+          <End Role="Agendamiento" Type="Self.Agendamiento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estado">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Agendamiento">
+              <PropertyRef Name="IdEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Agendamiento_Region">
+          <End Role="Region" Type="Self.Region" Multiplicity="1" />
+          <End Role="Agendamiento" Type="Self.Agendamiento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Region">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Agendamiento">
+              <PropertyRef Name="IdRegion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Agendamiento_Trabajador">
+          <End Role="Trabajador" Type="Self.Trabajador" Multiplicity="1" />
+          <End Role="Agendamiento" Type="Self.Agendamiento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Trabajador">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Agendamiento">
+              <PropertyRef Name="IdTrabajador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Agendamiento_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Agendamiento" Type="Self.Agendamiento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Agendamiento">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FeedbackTrabajador_Trabajador">
+          <End Role="Trabajador" Type="Self.Trabajador" Multiplicity="1" />
+          <End Role="FeedbackTrabajador" Type="Self.FeedbackTrabajador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Trabajador">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FeedbackTrabajador">
+              <PropertyRef Name="IdTrabajador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FeedbackTrabajador_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="FeedbackTrabajador" Type="Self.FeedbackTrabajador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FeedbackTrabajador">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Inscripcion_Estado">
+          <End Role="Estado" Type="Self.Estado" Multiplicity="1" />
+          <End Role="Inscripcion" Type="Self.Inscripcion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estado">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Inscripcion">
+              <PropertyRef Name="IdEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Inscripcion_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Inscripcion" Type="Self.Inscripcion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Inscripcion">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MensajeSalida_Estado">
+          <End Role="Estado" Type="Self.Estado" Multiplicity="1" />
+          <End Role="MensajeSalida" Type="Self.MensajeSalida" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estado">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MensajeSalida">
+              <PropertyRef Name="IdEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Persona_Estado">
+          <End Role="Estado" Type="Self.Estado" Multiplicity="1" />
+          <End Role="Persona" Type="Self.Persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estado">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Persona">
+              <PropertyRef Name="IdEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Persona_TipoPersona">
+          <End Role="TipoPersona" Type="Self.TipoPersona" Multiplicity="1" />
+          <End Role="Persona" Type="Self.Persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoPersona">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Persona">
+              <PropertyRef Name="IdTipoPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Trabajador_Persona">
+          <End Role="Persona" Type="Self.Persona" Multiplicity="1" />
+          <End Role="Trabajador" Type="Self.Trabajador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Trabajador">
+              <PropertyRef Name="IdPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Trabajador_Region">
+          <End Role="Region" Type="Self.Region" Multiplicity="1" />
+          <End Role="Trabajador" Type="Self.Trabajador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Region">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Trabajador">
+              <PropertyRef Name="IdRegion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Trabajador_TipoTrabajador">
+          <End Role="TipoTrabajador" Type="Self.TipoTrabajador" Multiplicity="1" />
+          <End Role="Trabajador" Type="Self.Trabajador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoTrabajador">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Trabajador">
+              <PropertyRef Name="IdTipoTrabajador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Usuario_Estado">
+          <End Role="Estado" Type="Self.Estado" Multiplicity="1" />
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estado">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="IdEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Usuario_Persona">
+          <End Role="Persona" Type="Self.Persona" Multiplicity="1" />
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="IdPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="SalvameMasterModelStoreContainer">
           <EntitySet Name="Agendamiento" EntityType="Self.Agendamiento" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Estado" EntityType="Self.Estado" Schema="dbo" store:Type="Tables" />
@@ -146,11 +328,74 @@
           <EntitySet Name="MensajeSalida" EntityType="Self.MensajeSalida" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Persona" EntityType="Self.Persona" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Region" EntityType="Self.Region" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TipoPersona" EntityType="Self.TipoPersona" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TipoTrabajador" EntityType="Self.TipoTrabajador" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Trabajador" EntityType="Self.Trabajador" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Agendamiento_Estado" Association="Self.FK_Agendamiento_Estado">
+            <End Role="Estado" EntitySet="Estado" />
+            <End Role="Agendamiento" EntitySet="Agendamiento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Agendamiento_Region" Association="Self.FK_Agendamiento_Region">
+            <End Role="Region" EntitySet="Region" />
+            <End Role="Agendamiento" EntitySet="Agendamiento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Agendamiento_Trabajador" Association="Self.FK_Agendamiento_Trabajador">
+            <End Role="Trabajador" EntitySet="Trabajador" />
+            <End Role="Agendamiento" EntitySet="Agendamiento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Agendamiento_Usuario" Association="Self.FK_Agendamiento_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Agendamiento" EntitySet="Agendamiento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FeedbackTrabajador_Trabajador" Association="Self.FK_FeedbackTrabajador_Trabajador">
+            <End Role="Trabajador" EntitySet="Trabajador" />
+            <End Role="FeedbackTrabajador" EntitySet="FeedbackTrabajador" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FeedbackTrabajador_Usuario" Association="Self.FK_FeedbackTrabajador_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="FeedbackTrabajador" EntitySet="FeedbackTrabajador" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Inscripcion_Estado" Association="Self.FK_Inscripcion_Estado">
+            <End Role="Estado" EntitySet="Estado" />
+            <End Role="Inscripcion" EntitySet="Inscripcion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Inscripcion_Usuario" Association="Self.FK_Inscripcion_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Inscripcion" EntitySet="Inscripcion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MensajeSalida_Estado" Association="Self.FK_MensajeSalida_Estado">
+            <End Role="Estado" EntitySet="Estado" />
+            <End Role="MensajeSalida" EntitySet="MensajeSalida" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Persona_Estado" Association="Self.FK_Persona_Estado">
+            <End Role="Estado" EntitySet="Estado" />
+            <End Role="Persona" EntitySet="Persona" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Persona_TipoPersona" Association="Self.FK_Persona_TipoPersona">
+            <End Role="TipoPersona" EntitySet="TipoPersona" />
+            <End Role="Persona" EntitySet="Persona" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Trabajador_Persona" Association="Self.FK_Trabajador_Persona">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="Trabajador" EntitySet="Trabajador" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Trabajador_Region" Association="Self.FK_Trabajador_Region">
+            <End Role="Region" EntitySet="Region" />
+            <End Role="Trabajador" EntitySet="Trabajador" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Trabajador_TipoTrabajador" Association="Self.FK_Trabajador_TipoTrabajador">
+            <End Role="TipoTrabajador" EntitySet="TipoTrabajador" />
+            <End Role="Trabajador" EntitySet="Trabajador" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Usuario_Estado" Association="Self.FK_Usuario_Estado">
+            <End Role="Estado" EntitySet="Estado" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Usuario_Persona" Association="Self.FK_Usuario_Persona">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -164,11 +409,74 @@
           <EntitySet Name="MensajeSalida" EntityType="SalvameMasterModel.MensajeSalida" />
           <EntitySet Name="Persona" EntityType="SalvameMasterModel.Persona" />
           <EntitySet Name="Region" EntityType="SalvameMasterModel.Region" />
-          <EntitySet Name="sysdiagrams" EntityType="SalvameMasterModel.sysdiagrams" />
           <EntitySet Name="TipoPersona" EntityType="SalvameMasterModel.TipoPersona" />
           <EntitySet Name="TipoTrabajador" EntityType="SalvameMasterModel.TipoTrabajador" />
           <EntitySet Name="Trabajador" EntityType="SalvameMasterModel.Trabajador" />
-          <EntitySet Name="Usuario1Set" EntityType="SalvameMasterModel.Usuario1" />
+          <EntitySet Name="Usuario" EntityType="SalvameMasterModel.Usuario" />
+          <AssociationSet Name="FK_Agendamiento_Estado" Association="SalvameMasterModel.FK_Agendamiento_Estado">
+            <End Role="Estado" EntitySet="Estado" />
+            <End Role="Agendamiento" EntitySet="Agendamiento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Agendamiento_Region" Association="SalvameMasterModel.FK_Agendamiento_Region">
+            <End Role="Region" EntitySet="Region" />
+            <End Role="Agendamiento" EntitySet="Agendamiento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Agendamiento_Trabajador" Association="SalvameMasterModel.FK_Agendamiento_Trabajador">
+            <End Role="Trabajador" EntitySet="Trabajador" />
+            <End Role="Agendamiento" EntitySet="Agendamiento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Agendamiento_Usuario" Association="SalvameMasterModel.FK_Agendamiento_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Agendamiento" EntitySet="Agendamiento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Inscripcion_Estado" Association="SalvameMasterModel.FK_Inscripcion_Estado">
+            <End Role="Estado" EntitySet="Estado" />
+            <End Role="Inscripcion" EntitySet="Inscripcion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MensajeSalida_Estado" Association="SalvameMasterModel.FK_MensajeSalida_Estado">
+            <End Role="Estado" EntitySet="Estado" />
+            <End Role="MensajeSalida" EntitySet="MensajeSalida" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Persona_Estado" Association="SalvameMasterModel.FK_Persona_Estado">
+            <End Role="Estado" EntitySet="Estado" />
+            <End Role="Persona" EntitySet="Persona" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Usuario_Estado" Association="SalvameMasterModel.FK_Usuario_Estado">
+            <End Role="Estado" EntitySet="Estado" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FeedbackTrabajador_Trabajador" Association="SalvameMasterModel.FK_FeedbackTrabajador_Trabajador">
+            <End Role="Trabajador" EntitySet="Trabajador" />
+            <End Role="FeedbackTrabajador" EntitySet="FeedbackTrabajador" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FeedbackTrabajador_Usuario" Association="SalvameMasterModel.FK_FeedbackTrabajador_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="FeedbackTrabajador" EntitySet="FeedbackTrabajador" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Inscripcion_Usuario" Association="SalvameMasterModel.FK_Inscripcion_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Inscripcion" EntitySet="Inscripcion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Persona_TipoPersona" Association="SalvameMasterModel.FK_Persona_TipoPersona">
+            <End Role="TipoPersona" EntitySet="TipoPersona" />
+            <End Role="Persona" EntitySet="Persona" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Trabajador_Persona" Association="SalvameMasterModel.FK_Trabajador_Persona">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="Trabajador" EntitySet="Trabajador" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Usuario_Persona" Association="SalvameMasterModel.FK_Usuario_Persona">
+            <End Role="Persona" EntitySet="Persona" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Trabajador_Region" Association="SalvameMasterModel.FK_Trabajador_Region">
+            <End Role="Region" EntitySet="Region" />
+            <End Role="Trabajador" EntitySet="Trabajador" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Trabajador_TipoTrabajador" Association="SalvameMasterModel.FK_Trabajador_TipoTrabajador">
+            <End Role="TipoTrabajador" EntitySet="TipoTrabajador" />
+            <End Role="Trabajador" EntitySet="Trabajador" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Agendamiento">
           <Key>
@@ -186,6 +494,10 @@
           <Property Name="Telefono" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="Observacion" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Name="IdEstado" Type="Int16" />
+          <NavigationProperty Name="Estado" Relationship="SalvameMasterModel.FK_Agendamiento_Estado" FromRole="Agendamiento" ToRole="Estado" />
+          <NavigationProperty Name="Region" Relationship="SalvameMasterModel.FK_Agendamiento_Region" FromRole="Agendamiento" ToRole="Region" />
+          <NavigationProperty Name="Trabajador" Relationship="SalvameMasterModel.FK_Agendamiento_Trabajador" FromRole="Agendamiento" ToRole="Trabajador" />
+          <NavigationProperty Name="Usuario" Relationship="SalvameMasterModel.FK_Agendamiento_Usuario" FromRole="Agendamiento" ToRole="Usuario" />
         </EntityType>
         <EntityType Name="Estado">
           <Key>
@@ -193,6 +505,11 @@
           </Key>
           <Property Name="Id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Agendamiento" Relationship="SalvameMasterModel.FK_Agendamiento_Estado" FromRole="Estado" ToRole="Agendamiento" />
+          <NavigationProperty Name="Inscripcion" Relationship="SalvameMasterModel.FK_Inscripcion_Estado" FromRole="Estado" ToRole="Inscripcion" />
+          <NavigationProperty Name="MensajeSalida" Relationship="SalvameMasterModel.FK_MensajeSalida_Estado" FromRole="Estado" ToRole="MensajeSalida" />
+          <NavigationProperty Name="Persona" Relationship="SalvameMasterModel.FK_Persona_Estado" FromRole="Estado" ToRole="Persona" />
+          <NavigationProperty Name="Usuario" Relationship="SalvameMasterModel.FK_Usuario_Estado" FromRole="Estado" ToRole="Usuario" />
         </EntityType>
         <EntityType Name="FeedbackTrabajador">
           <Key>
@@ -204,6 +521,8 @@
           <Property Name="FchFeedback" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Valoracion" Type="Decimal" Nullable="false" Precision="12" Scale="3" />
           <Property Name="Observacion" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Trabajador" Relationship="SalvameMasterModel.FK_FeedbackTrabajador_Trabajador" FromRole="FeedbackTrabajador" ToRole="Trabajador" />
+          <NavigationProperty Name="Usuario" Relationship="SalvameMasterModel.FK_FeedbackTrabajador_Usuario" FromRole="FeedbackTrabajador" ToRole="Usuario" />
         </EntityType>
         <EntityType Name="Inscripcion">
           <Key>
@@ -215,6 +534,8 @@
           <Property Name="Token" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="FchExpiracion" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="IdEstado" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="Estado" Relationship="SalvameMasterModel.FK_Inscripcion_Estado" FromRole="Inscripcion" ToRole="Estado" />
+          <NavigationProperty Name="Usuario" Relationship="SalvameMasterModel.FK_Inscripcion_Usuario" FromRole="Inscripcion" ToRole="Usuario" />
         </EntityType>
         <EntityType Name="MensajeSalida">
           <Key>
@@ -229,6 +550,7 @@
           <Property Name="NroIntentos" Type="Int16" Nullable="false" />
           <Property Name="FchUpdate" Type="DateTime" Precision="3" />
           <Property Name="IdEstado" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="Estado" Relationship="SalvameMasterModel.FK_MensajeSalida_Estado" FromRole="MensajeSalida" ToRole="Estado" />
         </EntityType>
         <EntityType Name="Persona">
           <Key>
@@ -244,6 +566,10 @@
           <Property Name="Sexo" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
           <Property Name="IdTipoPersona" Type="Int16" Nullable="false" />
           <Property Name="IdEstado" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="Estado" Relationship="SalvameMasterModel.FK_Persona_Estado" FromRole="Persona" ToRole="Estado" />
+          <NavigationProperty Name="TipoPersona" Relationship="SalvameMasterModel.FK_Persona_TipoPersona" FromRole="Persona" ToRole="TipoPersona" />
+          <NavigationProperty Name="Trabajador" Relationship="SalvameMasterModel.FK_Trabajador_Persona" FromRole="Persona" ToRole="Trabajador" />
+          <NavigationProperty Name="Usuario" Relationship="SalvameMasterModel.FK_Usuario_Persona" FromRole="Persona" ToRole="Usuario" />
         </EntityType>
         <EntityType Name="Region">
           <Key>
@@ -251,16 +577,8 @@
           </Key>
           <Property Name="Id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Agendamiento" Relationship="SalvameMasterModel.FK_Agendamiento_Region" FromRole="Region" ToRole="Agendamiento" />
+          <NavigationProperty Name="Trabajador" Relationship="SalvameMasterModel.FK_Trabajador_Region" FromRole="Region" ToRole="Trabajador" />
         </EntityType>
         <EntityType Name="TipoPersona">
           <Key>
@@ -268,6 +586,7 @@
           </Key>
           <Property Name="Id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Persona" Relationship="SalvameMasterModel.FK_Persona_TipoPersona" FromRole="TipoPersona" ToRole="Persona" />
         </EntityType>
         <EntityType Name="TipoTrabajador">
           <Key>
@@ -275,6 +594,7 @@
           </Key>
           <Property Name="Id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Trabajador" Relationship="SalvameMasterModel.FK_Trabajador_TipoTrabajador" FromRole="TipoTrabajador" ToRole="Trabajador" />
         </EntityType>
         <EntityType Name="Trabajador">
           <Key>
@@ -292,8 +612,13 @@
           <Property Name="Latitud" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Longitud" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Descripcion" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Agendamiento" Relationship="SalvameMasterModel.FK_Agendamiento_Trabajador" FromRole="Trabajador" ToRole="Agendamiento" />
+          <NavigationProperty Name="FeedbackTrabajador" Relationship="SalvameMasterModel.FK_FeedbackTrabajador_Trabajador" FromRole="Trabajador" ToRole="FeedbackTrabajador" />
+          <NavigationProperty Name="Persona" Relationship="SalvameMasterModel.FK_Trabajador_Persona" FromRole="Trabajador" ToRole="Persona" />
+          <NavigationProperty Name="Region" Relationship="SalvameMasterModel.FK_Trabajador_Region" FromRole="Trabajador" ToRole="Region" />
+          <NavigationProperty Name="TipoTrabajador" Relationship="SalvameMasterModel.FK_Trabajador_TipoTrabajador" FromRole="Trabajador" ToRole="TipoTrabajador" />
         </EntityType>
-        <EntityType Name="Usuario1">
+        <EntityType Name="Usuario">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -302,8 +627,205 @@
           <Property Name="Password" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="false" />
           <Property Name="FchCreate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="IdEstado" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="Agendamiento" Relationship="SalvameMasterModel.FK_Agendamiento_Usuario" FromRole="Usuario" ToRole="Agendamiento" />
+          <NavigationProperty Name="Estado" Relationship="SalvameMasterModel.FK_Usuario_Estado" FromRole="Usuario" ToRole="Estado" />
+          <NavigationProperty Name="FeedbackTrabajador" Relationship="SalvameMasterModel.FK_FeedbackTrabajador_Usuario" FromRole="Usuario" ToRole="FeedbackTrabajador" />
+          <NavigationProperty Name="Inscripcion" Relationship="SalvameMasterModel.FK_Inscripcion_Usuario" FromRole="Usuario" ToRole="Inscripcion" />
+          <NavigationProperty Name="Persona" Relationship="SalvameMasterModel.FK_Usuario_Persona" FromRole="Usuario" ToRole="Persona" />
         </EntityType>
-      </Schema>
+        <Association Name="FK_Agendamiento_Estado">
+          <End Type="SalvameMasterModel.Estado" Role="Estado" Multiplicity="0..1" />
+          <End Type="SalvameMasterModel.Agendamiento" Role="Agendamiento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estado">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Agendamiento">
+              <PropertyRef Name="IdEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Agendamiento_Region">
+          <End Type="SalvameMasterModel.Region" Role="Region" Multiplicity="1" />
+          <End Type="SalvameMasterModel.Agendamiento" Role="Agendamiento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Region">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Agendamiento">
+              <PropertyRef Name="IdRegion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Agendamiento_Trabajador">
+          <End Type="SalvameMasterModel.Trabajador" Role="Trabajador" Multiplicity="1" />
+          <End Type="SalvameMasterModel.Agendamiento" Role="Agendamiento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Trabajador">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Agendamiento">
+              <PropertyRef Name="IdTrabajador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Agendamiento_Usuario">
+          <End Type="SalvameMasterModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="SalvameMasterModel.Agendamiento" Role="Agendamiento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Agendamiento">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Inscripcion_Estado">
+          <End Type="SalvameMasterModel.Estado" Role="Estado" Multiplicity="1" />
+          <End Type="SalvameMasterModel.Inscripcion" Role="Inscripcion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estado">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Inscripcion">
+              <PropertyRef Name="IdEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MensajeSalida_Estado">
+          <End Type="SalvameMasterModel.Estado" Role="Estado" Multiplicity="1" />
+          <End Type="SalvameMasterModel.MensajeSalida" Role="MensajeSalida" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estado">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MensajeSalida">
+              <PropertyRef Name="IdEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Persona_Estado">
+          <End Type="SalvameMasterModel.Estado" Role="Estado" Multiplicity="1" />
+          <End Type="SalvameMasterModel.Persona" Role="Persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estado">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Persona">
+              <PropertyRef Name="IdEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Usuario_Estado">
+          <End Type="SalvameMasterModel.Estado" Role="Estado" Multiplicity="1" />
+          <End Type="SalvameMasterModel.Usuario" Role="Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estado">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="IdEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FeedbackTrabajador_Trabajador">
+          <End Type="SalvameMasterModel.Trabajador" Role="Trabajador" Multiplicity="1" />
+          <End Type="SalvameMasterModel.FeedbackTrabajador" Role="FeedbackTrabajador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Trabajador">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FeedbackTrabajador">
+              <PropertyRef Name="IdTrabajador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FeedbackTrabajador_Usuario">
+          <End Type="SalvameMasterModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="SalvameMasterModel.FeedbackTrabajador" Role="FeedbackTrabajador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FeedbackTrabajador">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Inscripcion_Usuario">
+          <End Type="SalvameMasterModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="SalvameMasterModel.Inscripcion" Role="Inscripcion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Inscripcion">
+              <PropertyRef Name="IdUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Persona_TipoPersona">
+          <End Type="SalvameMasterModel.TipoPersona" Role="TipoPersona" Multiplicity="1" />
+          <End Type="SalvameMasterModel.Persona" Role="Persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoPersona">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Persona">
+              <PropertyRef Name="IdTipoPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Trabajador_Persona">
+          <End Type="SalvameMasterModel.Persona" Role="Persona" Multiplicity="1" />
+          <End Type="SalvameMasterModel.Trabajador" Role="Trabajador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Trabajador">
+              <PropertyRef Name="IdPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Usuario_Persona">
+          <End Type="SalvameMasterModel.Persona" Role="Persona" Multiplicity="1" />
+          <End Type="SalvameMasterModel.Usuario" Role="Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="IdPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Trabajador_Region">
+          <End Type="SalvameMasterModel.Region" Role="Region" Multiplicity="1" />
+          <End Type="SalvameMasterModel.Trabajador" Role="Trabajador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Region">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Trabajador">
+              <PropertyRef Name="IdRegion" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Trabajador_TipoTrabajador">
+          <End Type="SalvameMasterModel.TipoTrabajador" Role="TipoTrabajador" Multiplicity="1" />
+          <End Type="SalvameMasterModel.Trabajador" Role="Trabajador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoTrabajador">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Trabajador">
+              <PropertyRef Name="IdTipoTrabajador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -398,17 +920,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="SalvameMasterModel.sysdiagrams">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="definition" ColumnName="definition" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="name" ColumnName="name" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="TipoPersona">
             <EntityTypeMapping TypeName="SalvameMasterModel.TipoPersona">
               <MappingFragment StoreEntitySet="TipoPersona">
@@ -443,8 +954,8 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Usuario1Set">
-            <EntityTypeMapping TypeName="SalvameMasterModel.Usuario1">
+          <EntitySetMapping Name="Usuario">
+            <EntityTypeMapping TypeName="SalvameMasterModel.Usuario">
               <MappingFragment StoreEntitySet="Usuario">
                 <ScalarProperty Name="IdEstado" ColumnName="IdEstado" />
                 <ScalarProperty Name="FchCreate" ColumnName="FchCreate" />

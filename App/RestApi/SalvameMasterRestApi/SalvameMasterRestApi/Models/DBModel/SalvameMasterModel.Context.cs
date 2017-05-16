@@ -32,10 +32,9 @@ namespace SalvameMasterRestApi.Models.DBModel
         public virtual DbSet<MensajeSalida> MensajeSalida { get; set; }
         public virtual DbSet<Persona> Persona { get; set; }
         public virtual DbSet<Region> Region { get; set; }
-        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<TipoPersona> TipoPersona { get; set; }
         public virtual DbSet<TipoTrabajador> TipoTrabajador { get; set; }
         public virtual DbSet<Trabajador> Trabajador { get; set; }
-        public virtual DbSet<Usuario1> Usuario1Set { get; set; }
+        public virtual DbSet<Usuario> Usuario { get; set; }
     }
 }

@@ -14,7 +14,19 @@ namespace SalvameMasterRestApi.Models.DBModel
     
     public partial class Region
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Region()
+        {
+            this.Agendamiento = new HashSet<Agendamiento>();
+            this.Trabajador = new HashSet<Trabajador>();
+        }
+    
         public short Id { get; set; }
         public string Descripcion { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Agendamiento> Agendamiento { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Trabajador> Trabajador { get; set; }
     }
 }

@@ -14,6 +14,13 @@ namespace SalvameMasterRestApi.Models.DBModel
     
     public partial class Persona
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Persona()
+        {
+            this.Trabajador = new HashSet<Trabajador>();
+            this.Usuario = new HashSet<Usuario>();
+        }
+    
         public long Id { get; set; }
         public string Nombre { get; set; }
         public string ApellidoPaterno { get; set; }
@@ -24,5 +31,12 @@ namespace SalvameMasterRestApi.Models.DBModel
         public string Sexo { get; set; }
         public short IdTipoPersona { get; set; }
         public short IdEstado { get; set; }
+    
+        public virtual Estado Estado { get; set; }
+        public virtual TipoPersona TipoPersona { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Trabajador> Trabajador { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Usuario> Usuario { get; set; }
     }
 }

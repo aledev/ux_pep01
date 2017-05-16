@@ -14,6 +14,13 @@ namespace SalvameMasterRestApi.Models.DBModel
     
     public partial class Trabajador
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Trabajador()
+        {
+            this.Agendamiento = new HashSet<Agendamiento>();
+            this.FeedbackTrabajador = new HashSet<FeedbackTrabajador>();
+        }
+    
         public long Id { get; set; }
         public long IdPersona { get; set; }
         public short IdTipoTrabajador { get; set; }
@@ -26,5 +33,13 @@ namespace SalvameMasterRestApi.Models.DBModel
         public string Latitud { get; set; }
         public string Longitud { get; set; }
         public string Descripcion { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Agendamiento> Agendamiento { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<FeedbackTrabajador> FeedbackTrabajador { get; set; }
+        public virtual Persona Persona { get; set; }
+        public virtual Region Region { get; set; }
+        public virtual TipoTrabajador TipoTrabajador { get; set; }
     }
 }

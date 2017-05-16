@@ -12,30 +12,29 @@ namespace SalvameMasterRestApi.Models.DBModel
     using System;
     using System.Collections.Generic;
     
-    public partial class Estado
+    public partial class Usuario
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Estado()
+        public Usuario()
         {
             this.Agendamiento = new HashSet<Agendamiento>();
+            this.FeedbackTrabajador = new HashSet<FeedbackTrabajador>();
             this.Inscripcion = new HashSet<Inscripcion>();
-            this.MensajeSalida = new HashSet<MensajeSalida>();
-            this.Persona = new HashSet<Persona>();
-            this.Usuario = new HashSet<Usuario>();
         }
     
-        public short Id { get; set; }
-        public string Descripcion { get; set; }
+        public long Id { get; set; }
+        public long IdPersona { get; set; }
+        public string Password { get; set; }
+        public System.DateTime FchCreate { get; set; }
+        public short IdEstado { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Agendamiento> Agendamiento { get; set; }
+        public virtual Estado Estado { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<FeedbackTrabajador> FeedbackTrabajador { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Inscripcion> Inscripcion { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<MensajeSalida> MensajeSalida { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Persona> Persona { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Usuario> Usuario { get; set; }
+        public virtual Persona Persona { get; set; }
     }
 }

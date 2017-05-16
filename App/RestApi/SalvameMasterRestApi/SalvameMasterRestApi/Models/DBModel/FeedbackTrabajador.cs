@@ -20,5 +20,8 @@ namespace SalvameMasterRestApi.Models.DBModel
         public System.DateTime FchFeedback { get; set; }
         public decimal Valoracion { get; set; }
         public string Observacion { get; set; }
+    
+        public virtual Trabajador Trabajador { get; set; }
+        public virtual Usuario Usuario { get; set; }
     }
 }

@@ -23,5 +23,7 @@ namespace SalvameMasterRestApi.Models.DBModel
         public short NroIntentos { get; set; }
         public Nullable<System.DateTime> FchUpdate { get; set; }
         public short IdEstado { get; set; }
+    
+        public virtual Estado Estado { get; set; }
     }
 }

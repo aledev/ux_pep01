@@ -23,8 +23,22 @@ namespace SalvameMasterRestApi.Models.Entities
             set;
         }
 
+        [JsonProperty("Persona")]
+        public PersonaDTO Persona
+        {
+            get;
+            set;
+        }
+
         [JsonProperty("IdTipoTrabajador")]
         public short IdTipoTrabajador
+        {
+            get;
+            set;
+        }
+
+        [JsonProperty("TipoTrabajador")]
+        public TipoTrabajadorDTO TipoTrabajador
         {
             get;
             set;
@@ -67,6 +81,13 @@ namespace SalvameMasterRestApi.Models.Entities
 
         [JsonProperty("IdRegion")]
         public short IdRegion
+        {
+            get;
+            set;
+        }
+
+        [JsonProperty("Region")]
+        public RegionDTO Region
         {
             get;
             set;

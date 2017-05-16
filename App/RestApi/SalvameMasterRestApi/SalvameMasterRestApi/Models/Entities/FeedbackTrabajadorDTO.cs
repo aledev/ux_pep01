@@ -7,7 +7,7 @@ using System.Web;
 namespace SalvameMasterRestApi.Models.Entities
 {
     [Serializable]
-    public class UsuarioDTO
+    public class FeedbackTrabajadorDTO
     {
         [JsonProperty("Id")]
         public long Id
@@ -16,15 +16,8 @@ namespace SalvameMasterRestApi.Models.Entities
             set;
         }
 
-        [JsonProperty("IdPersona")]
-        public long IdPersona
-        {
-            get;
-            set;
-        }
-
-        [JsonProperty("Persona")]
-        public PersonaDTO Persona
+        [JsonProperty("IdTrabajador")]
+        public long IdTrabajador
         {
             get;
             set;
@@ -37,29 +30,36 @@ namespace SalvameMasterRestApi.Models.Entities
             set;
         }
 
-        [JsonProperty("Password")]
-        public string Password
+        [JsonProperty("IdUsuario")]
+        public long IdUsuario
         {
             get;
             set;
         }
 
-        [JsonProperty("FchCreate")]
-        public DateTime FchCreate
+        [JsonProperty("Usuario")]
+        public UsuarioDTO Usuario
         {
             get;
             set;
         }
 
-        [JsonProperty("IdEstado")]
-        public short IdEstado
+        [JsonProperty("FchFeedback")]
+        public DateTime FchFeedback
         {
             get;
             set;
         }
-    
-        [JsonProperty("Estado")]
-        public EstadoDTO Estado
+
+        [JsonProperty("Valoracion")]
+        public decimal Valoracion
+        {
+            get;
+            set;
+        }
+
+        [JsonProperty("Observacion")]
+        public string Observacion
         {
             get;
             set;

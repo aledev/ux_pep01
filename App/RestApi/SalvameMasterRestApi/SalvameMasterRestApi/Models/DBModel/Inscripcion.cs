@@ -20,5 +20,8 @@ namespace SalvameMasterRestApi.Models.DBModel
         public string Token { get; set; }
         public System.DateTime FchExpiracion { get; set; }
         public short IdEstado { get; set; }
+    
+        public virtual Estado Estado { get; set; }
+        public virtual Usuario Usuario { get; set; }
     }
 }

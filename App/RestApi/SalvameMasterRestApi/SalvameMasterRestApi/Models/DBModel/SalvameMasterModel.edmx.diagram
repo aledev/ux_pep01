@@ -5,18 +5,33 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="af46414e206e4f7aa60470a3e315fb47" Name="Diagram1">
-        <EntityTypeShape EntityType="SalvameMasterModel.Agendamiento" Width="1.5" PointX="0.75" PointY="4.75" />
-        <EntityTypeShape EntityType="SalvameMasterModel.Estado" Width="1.5" PointX="2.75" PointY="4.75" />
-        <EntityTypeShape EntityType="SalvameMasterModel.FeedbackTrabajador" Width="1.5" PointX="4.75" PointY="4.75" />
-        <EntityTypeShape EntityType="SalvameMasterModel.Inscripcion" Width="1.5" PointX="5.75" PointY="0.75" />
-        <EntityTypeShape EntityType="SalvameMasterModel.MensajeSalida" Width="1.5" PointX="6.75" PointY="3.75" />
-        <EntityTypeShape EntityType="SalvameMasterModel.Persona" Width="1.5" PointX="2.75" PointY="7.75" />
-        <EntityTypeShape EntityType="SalvameMasterModel.Region" Width="1.5" PointX="7.75" PointY="0.75" />
-        <EntityTypeShape EntityType="SalvameMasterModel.sysdiagrams" Width="1.5" PointX="4.75" PointY="7.75" />
-        <EntityTypeShape EntityType="SalvameMasterModel.TipoPersona" Width="1.5" PointX="6.75" PointY="7.75" />
-        <EntityTypeShape EntityType="SalvameMasterModel.TipoTrabajador" Width="1.5" PointX="8.75" PointY="3.75" />
-        <EntityTypeShape EntityType="SalvameMasterModel.Trabajador" Width="1.5" PointX="8.75" PointY="6.75" />
-        <EntityTypeShape EntityType="SalvameMasterModel.Usuario1" Width="1.5" PointX="9.75" PointY="0.75" />
+        <EntityTypeShape EntityType="SalvameMasterModel.Agendamiento" Width="1.5" PointX="6" PointY="9.625" />
+        <EntityTypeShape EntityType="SalvameMasterModel.Estado" Width="1.5" PointX="0.75" PointY="10.5" />
+        <EntityTypeShape EntityType="SalvameMasterModel.FeedbackTrabajador" Width="1.5" PointX="10.5" PointY="8.25" />
+        <EntityTypeShape EntityType="SalvameMasterModel.Inscripcion" Width="1.5" PointX="3" PointY="6.5" />
+        <EntityTypeShape EntityType="SalvameMasterModel.MensajeSalida" Width="1.5" PointX="3" PointY="22.875" />
+        <EntityTypeShape EntityType="SalvameMasterModel.Persona" Width="1.5" PointX="3" PointY="9.875" />
+        <EntityTypeShape EntityType="SalvameMasterModel.Region" Width="1.5" PointX="3.75" PointY="14.625" />
+        <EntityTypeShape EntityType="SalvameMasterModel.TipoPersona" Width="1.5" PointX="0.75" PointY="7.875" />
+        <EntityTypeShape EntityType="SalvameMasterModel.TipoTrabajador" Width="1.5" PointX="6" PointY="14.875" />
+        <EntityTypeShape EntityType="SalvameMasterModel.Trabajador" Width="1.5" PointX="8.25" PointY="9.625" />
+        <EntityTypeShape EntityType="SalvameMasterModel.Usuario" Width="1.5" PointX="5.25" PointY="5.25" />
+        <AssociationConnector Association="SalvameMasterModel.FK_Agendamiento_Estado" />
+        <AssociationConnector Association="SalvameMasterModel.FK_Agendamiento_Region" />
+        <AssociationConnector Association="SalvameMasterModel.FK_Agendamiento_Trabajador" />
+        <AssociationConnector Association="SalvameMasterModel.FK_Agendamiento_Usuario" />
+        <AssociationConnector Association="SalvameMasterModel.FK_Inscripcion_Estado" />
+        <AssociationConnector Association="SalvameMasterModel.FK_MensajeSalida_Estado" />
+        <AssociationConnector Association="SalvameMasterModel.FK_Persona_Estado" />
+        <AssociationConnector Association="SalvameMasterModel.FK_Usuario_Estado" />
+        <AssociationConnector Association="SalvameMasterModel.FK_FeedbackTrabajador_Trabajador" />
+        <AssociationConnector Association="SalvameMasterModel.FK_FeedbackTrabajador_Usuario" />
+        <AssociationConnector Association="SalvameMasterModel.FK_Inscripcion_Usuario" />
+        <AssociationConnector Association="SalvameMasterModel.FK_Persona_TipoPersona" />
+        <AssociationConnector Association="SalvameMasterModel.FK_Trabajador_Persona" />
+        <AssociationConnector Association="SalvameMasterModel.FK_Usuario_Persona" />
+        <AssociationConnector Association="SalvameMasterModel.FK_Trabajador_Region" />
+        <AssociationConnector Association="SalvameMasterModel.FK_Trabajador_TipoTrabajador" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
