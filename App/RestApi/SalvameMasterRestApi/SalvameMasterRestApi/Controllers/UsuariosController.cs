@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Transactions;
 using System.Web.Http;
 
 namespace SalvameMasterRestApi.Controllers
@@ -123,8 +124,29 @@ namespace SalvameMasterRestApi.Controllers
         }
 
         // POST: api/Usuarios
-        public void Post([FromBody]string value)
+        public string Post([FromBody]string value)
         {
+            string jsonResult = string.Empty;
+
+            try
+            {
+                UsuarioDTO userObj = JsonConvert.DeserializeObject<UsuarioDTO>(value);
+
+                using (var dbContext = new salvameMasterEntities())
+                {
+                    using (var trx = new TransactionScope())
+                    {
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                var methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                log.Error(string.Format("{0} {2} => {3}", this.GetType().Name, methodName, "Error"), ex);
+            }
+
+            return jsonResult;
         }
 
         // PUT: api/Usuarios/5
