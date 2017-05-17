@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">SalvameMaster</string>
+    <string name="title_activity_login">Inicio de sesión</string>  
+    <!-- Strings related to login -->
+     <string name="prompt_email">Correo</string> 
+    <string name="prompt_password">Contraseña</string> 
+    <string name="action_sign_in">Ingresar</string> 
+    <string name="action_sign_in_short">Registrarse</string> 
+    <string name="error_invalid_email">Esta dirección de correo no es válida.</string> 
+    <string name="error_invalid_password">Esta contraseña es demasiado corta.</string> 
+    <string name="error_incorrect_password">La contraseña es incorrecta</string> 
+    <string name="error_field_required">Este campo es requerido.</string> 
+    <string name="permission_rationale">"Se necesitan permisos del contacto para entregar el correo completo." </string>
+    <string name="title_tipo_perfil">Seleccione el tipo de perfil</string> 
+    <string name="title_tipo_de_trabajo">¿Qué tipo de trabajo realiza?</string> 
+    <string name="title_mensaje_foto">Ingrese su fotografía</string> 
+    <string name="nombre_boton_subir_imagen">Subir imagen</string> 
+    <string name="title_mensaje_tarifa">Ingrese valor de su tarifa por hora</string> 
+    <string name="prompt_tarifa">$ Tarifa</string> 
+    <string name="action_tarifa">Registrarse</string> 
+    <string name="title_mensaje_anio_experiencia">Elija sus años de experiencia</string> 
+    <string name="nombre_ingresar_maestro">Aceptar</string> 
+    <!-- Activity Admin Master -->
+    <string name="nombre_boton_mis_trabajos">Mis Trabajos</string> 
+    <string name="nombre_boton_perfil">Mi Perfil</string> 
+    <string name="nombre_boton_feed_back">Mi FeedBack</string> 
+    <string name="nombre_boton_estado_actual">Mi Estado Actual</string> 
+    <!-- Activity Estado Actual Master-->
+    <string name="title_mensaje_estado_actual">Seleccione Estado Actual</string> 
+    <string name="nombre_boton_desocupado">Desocupado</string> 
+    <string name="nombre_boton_ocupado">Ocupado</string> 
+    <string name="title_mensaje_tiempo_aproximado">Tiempo Aproximado</string> 
+    <string name="prompt_tiempo_ocupado">00:00</string> 
+    <string name="nombre_boton_guardar_estado_actual">Guardar Estado</string> 
+
+</resources>

@@ -99,5 +99,12 @@ namespace SalvameMasterRestApi.Models.Entities
             get;
             set;
         }
+
+        [JsonProperty("Foto")]
+        public string Foto
+        {
+            get;
+            set;
+        }
     }
 }

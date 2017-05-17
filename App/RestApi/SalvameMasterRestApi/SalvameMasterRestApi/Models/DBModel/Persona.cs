@@ -31,6 +31,7 @@ namespace SalvameMasterRestApi.Models.DBModel
         public string Sexo { get; set; }
         public short IdTipoPersona { get; set; }
         public short IdEstado { get; set; }
+        public string Foto { get; set; }
     
         public virtual Estado Estado { get; set; }
         public virtual TipoPersona TipoPersona { get; set; }

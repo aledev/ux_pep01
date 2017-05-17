@@ -66,7 +66,8 @@ namespace SalvameMasterRestApi.Controllers
                                        {
                                            Id = t.Id,
                                            Descripcion = t.Descripcion
-                                       }
+                                       },
+                                       Foto = p.Foto
                                    }
                                }).FirstOrDefault();
 

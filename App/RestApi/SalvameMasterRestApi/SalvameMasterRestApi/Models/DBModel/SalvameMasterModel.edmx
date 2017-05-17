@@ -79,6 +79,7 @@
           <Property Name="Sexo" Type="varchar" MaxLength="1" Nullable="false" />
           <Property Name="IdTipoPersona" Type="smallint" Nullable="false" />
           <Property Name="IdEstado" Type="smallint" Nullable="false" />
+          <Property Name="Foto" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="Region">
           <Key>
@@ -570,6 +571,7 @@
           <NavigationProperty Name="TipoPersona" Relationship="SalvameMasterModel.FK_Persona_TipoPersona" FromRole="Persona" ToRole="TipoPersona" />
           <NavigationProperty Name="Trabajador" Relationship="SalvameMasterModel.FK_Trabajador_Persona" FromRole="Persona" ToRole="Trabajador" />
           <NavigationProperty Name="Usuario" Relationship="SalvameMasterModel.FK_Usuario_Persona" FromRole="Persona" ToRole="Usuario" />
+          <Property Name="Foto" Type="String" />
         </EntityType>
         <EntityType Name="Region">
           <Key>
@@ -899,6 +901,7 @@
           <EntitySetMapping Name="Persona">
             <EntityTypeMapping TypeName="SalvameMasterModel.Persona">
               <MappingFragment StoreEntitySet="Persona">
+                <ScalarProperty Name="Foto" ColumnName="Foto" />
                 <ScalarProperty Name="IdEstado" ColumnName="IdEstado" />
                 <ScalarProperty Name="IdTipoPersona" ColumnName="IdTipoPersona" />
                 <ScalarProperty Name="Sexo" ColumnName="Sexo" />
