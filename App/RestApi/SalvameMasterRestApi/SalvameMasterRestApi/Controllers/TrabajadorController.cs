@@ -8,6 +8,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Results;
 
 namespace SalvameMasterRestApi.Controllers
 {
@@ -18,14 +19,12 @@ namespace SalvameMasterRestApi.Controllers
         #endregion
 
         // GET: api/Trabajador/5
-        public string Get(long id)
+        public JsonResult<TrabajadorDTO> Get(long id)
         {
-            string jsonObj = string.Empty;
+            TrabajadorDTO objDb = null;
 
             try
             {
-                TrabajadorDTO objDb = null;
-
                 using (var dbContext = new salvameMasterEntities())
                 {
 
@@ -60,8 +59,6 @@ namespace SalvameMasterRestApi.Controllers
                                      Descripcion = tt.Descripcion
                                  }
                              }).FirstOrDefault();
-
-                    jsonObj = JsonConvert.SerializeObject(objDb);
                 }
             }
             catch (Exception ex)
@@ -70,7 +67,7 @@ namespace SalvameMasterRestApi.Controllers
                 log.Error(string.Format("{0} {2} => {3}", this.GetType().Name, methodName, "Error"), ex);
             }
 
-            return jsonObj;
+            return Json(objDb);
         }
 
         // POST: api/Trabajador

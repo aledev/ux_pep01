@@ -10,6 +10,7 @@ using System.Net;
 using System.Net.Http;
 using System.Transactions;
 using System.Web.Http;
+using System.Web.Http.Results;
 
 namespace SalvameMasterRestApi.Controllers
 {
@@ -20,14 +21,12 @@ namespace SalvameMasterRestApi.Controllers
         #endregion
 
         #region metodos publicos
-        public string Get(string user, string pass)
+        public System.Web.Http.Results.JsonResult<UsuarioDTO> Get(string user, string pass)
         {
-            string jsonResult = string.Empty;
+            UsuarioDTO userObj = null;
 
             try
             {
-                UsuarioDTO userObj = null;
-
                 using (var dbContext = new salvameMasterEntities())
                 {
                     userObj = (from u in dbContext.Usuario
@@ -109,8 +108,6 @@ namespace SalvameMasterRestApi.Controllers
                                                       }
                                                   }).FirstOrDefault();
                         }
-
-                        jsonResult = JsonConvert.SerializeObject(userObj);
                     }
                 }
             }
@@ -120,7 +117,7 @@ namespace SalvameMasterRestApi.Controllers
                 log.Error(string.Format("{0} {2} => {3}", this.GetType().Name, methodName, "Error"), ex);
             }
 
-            return jsonResult;
+            return Json(userObj, new JsonSerializerSettings() { DateFormatString = "yyyy-MM-ddTHH:mm:ssZ" });
         }
 
         // POST: api/Usuarios
@@ -136,7 +133,76 @@ namespace SalvameMasterRestApi.Controllers
                 {
                     using (var trx = new TransactionScope())
                     {
+                        var objExists = dbContext.Persona.Where(p => p.Email == userObj.Persona.Email && 
+                                                                p.IdEstado == (short)EnumUtils.Estado.Habilitado).FirstOrDefault();
 
+                        if (objExists != null)
+                        {
+                            // Creamos el objeto persona en DB
+                            var objPersona = dbContext.Persona.Add(new Persona
+                            {
+                                ApellidoMaterno = userObj.Persona.ApellidoMaterno,
+                                ApellidoPaterno = userObj.Persona.ApellidoPaterno,
+                                Email = userObj.Persona.Email,
+                                FchNacimiento = userObj.Persona.FchNacimiento,
+                                FchRegistro = userObj.Persona.FchRegistro,
+                                Foto = userObj.Persona.Foto,
+                                IdEstado = userObj.Persona.IdEstado,
+                                IdTipoPersona = userObj.Persona.IdTipoPersona,
+                                Nombre = userObj.Persona.Nombre,
+                                Sexo = userObj.Persona.Sexo
+                            });
+                            // Guardamos los cambios
+                            dbContext.SaveChanges();
+                            // Obtenemos el id de la persona
+                            userObj.Persona.Id = objPersona.Id;
+                            userObj.IdPersona = objPersona.Id;
+
+                            // Creamos el objeto usuario en DB
+                            var objUsuario = dbContext.Usuario.Add(new Usuario
+                            {
+                                IdEstado = (short)EnumUtils.Estado.Habilitado,
+                                IdPersona = userObj.IdPersona,
+                                Password = userObj.Password
+                            });
+                            // Guardamos los cambios
+                            dbContext.SaveChanges();
+                            // Obtenemos el id del usuario
+                            userObj.Id = objUsuario.Id;
+
+                            // Verificamos si el usuario de tipo Trabajador
+                            if (objPersona.IdTipoPersona == (short)EnumUtils.TipoPersona.Trabajador)
+                            {
+                                // Creamos el objeto trabajador en DB
+                                var objTrabajador = dbContext.Trabajador.Add(new Trabajador
+                                {
+                                    Descripcion = userObj.Trabajador.Descripcion,
+                                    Direccion = userObj.Trabajador.Direccion,
+                                    FchInicioTrabajador = userObj.Trabajador.FchInicioTrabajador,
+                                    IdPersona = objPersona.Id,
+                                    IdRegion = userObj.Trabajador.IdRegion,
+                                    IdTipoTrabajador = userObj.Trabajador.IdTipoTrabajador,
+                                    Latitud = userObj.Trabajador.Latitud,
+                                    Longitud = userObj.Trabajador.Longitud,
+                                    PrecioHora = userObj.Trabajador.PrecioHora,
+                                    PrecioVisita = userObj.Trabajador.PrecioVisita,
+                                    Telefono = userObj.Trabajador.Telefono
+                                });
+                                // Guardamos los cambios
+                                dbContext.SaveChanges();
+                                // Obtenemos el id del trabajador
+                                userObj.Trabajador.Id = objTrabajador.Id;
+                                userObj.Trabajador.IdPersona = objPersona.Id;
+                            }
+
+                            trx.Complete();
+
+                            jsonResult = JsonConvert.SerializeObject(new { resultado = true, mensaje = "OK", datos = "" });
+                        }
+                        else
+                        {
+                            jsonResult = JsonConvert.SerializeObject(new { resultado = false, mensaje = "El email ya esta registrado" });
+                        }
                     }
                 }
             }
@@ -144,6 +210,8 @@ namespace SalvameMasterRestApi.Controllers
             {
                 var methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
                 log.Error(string.Format("{0} {2} => {3}", this.GetType().Name, methodName, "Error"), ex);
+
+                jsonResult = JsonConvert.SerializeObject(new { resultado = false, mensaje = "Error al intentar crear el usuario" });
             }
 
             return jsonResult;
@@ -152,6 +220,7 @@ namespace SalvameMasterRestApi.Controllers
         // PUT: api/Usuarios/5
         public void Put(int id, [FromBody]string value)
         {
+
         }
 
         // DELETE: api/Usuarios/5
