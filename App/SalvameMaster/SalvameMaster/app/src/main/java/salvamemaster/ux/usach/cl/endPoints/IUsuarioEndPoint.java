@@ -1,6 +1,6 @@
-package main.java.salvamemaster.ux.usach.cl.endPoints;
+package salvamemaster.ux.usach.cl.endPoints;
 
-import main.java.salvamemaster.ux.usach.cl.entities.UsuarioDTO;
+import salvamemaster.ux.usach.cl.entities.UsuarioDTO;
 import retrofit2.Call;
 import retrofit2.http.*;
 

@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.content.pm.PackageManager;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -34,9 +35,11 @@ import java.util.List;
 import android.content.Intent;
 import retrofit2.*;
 
-import main.java.salvamemaster.ux.usach.cl.endPoints.IUsuarioEndPoint;
+import salvamemaster.ux.usach.cl.endPoints.IUsuarioEndPoint;
+import salvamemaster.ux.usach.cl.entities.UsuarioDTO;
 
 import static android.Manifest.permission.READ_CONTACTS;
+import static android.Manifest.permission.SYSTEM_ALERT_WINDOW;
 
 /**
  * A login screen that offers login via email/password.
@@ -98,6 +101,16 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://api.github.com/")
+                .build();
+
+        IUsuarioEndPoint service = retrofit.create(IUsuarioEndPoint.class);
+
+        Call<UsuarioDTO> acceso = service.getUserByLogon("oscar.rodrigo.castillo@gmail.com","12345678");
+        System.out.println("Acceso "+acceso);
+
     }
 
     private void populateAutoComplete() {
@@ -179,6 +192,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             showProgress(true);
             mAuthTask = new UserLoginTask(email, password);
             mAuthTask.execute((Void) null);
+
+            //Usar API RESTFUL
+
+            //Fin Usar API RESTFUL
+
             //Ir a la siguiente pantalla
             Intent intent = new Intent(LoginActivity.this, TipoPerfilActivity.class);
             startActivity(intent);
@@ -322,12 +340,12 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         protected Boolean doInBackground(Void... params) {
             // TODO: attempt authentication against a network service.
 
-            try {
+            /*try {
                 // Simulate network access...
 
             } catch (InterruptedException e) {
                 return false;
-            }
+            }*/
 
             for (String credential : DUMMY_CREDENTIALS) {
                 String[] pieces = credential.split(":");

@@ -1,4 +1,4 @@
-package main.java.salvamemaster.ux.usach.cl.entities;
+package salvamemaster.ux.usach.cl.entities;
 
 import java.util.Date;
 import com.google.gson.annotations.SerializedName;
