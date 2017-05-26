@@ -15,7 +15,5 @@ public class PersonaDTO {
     private Date fechaRegistro;
     private String TipoSexo;
     private int idTipoPersona;
-    private PersonaDTO
-
 
 }

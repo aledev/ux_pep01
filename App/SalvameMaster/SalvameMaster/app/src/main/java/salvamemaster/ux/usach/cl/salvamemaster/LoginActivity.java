@@ -3,6 +3,8 @@ package salvamemaster.ux.usach.cl.salvamemaster;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.pm.PackageManager;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
@@ -29,17 +31,31 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+import android.os.Handler;
 
 import java.util.ArrayList;
 import java.util.List;
 import android.content.Intent;
 import retrofit2.*;
 
-import salvamemaster.ux.usach.cl.endPoints.IUsuarioEndPoint;
+import salvamemaster.ux.usach.cl.endPoints.IUsuarioEndpoint;
 import salvamemaster.ux.usach.cl.entities.UsuarioDTO;
 
 import static android.Manifest.permission.READ_CONTACTS;
 import static android.Manifest.permission.SYSTEM_ALERT_WINDOW;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 
 /**
  * A login screen that offers login via email/password.
@@ -101,15 +117,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://api.github.com/")
-                .build();
-
-        IUsuarioEndPoint service = retrofit.create(IUsuarioEndPoint.class);
-
-        Call<UsuarioDTO> acceso = service.getUserByLogon("oscar.rodrigo.castillo@gmail.com","12345678");
-        System.out.println("Acceso "+acceso);
 
     }
 
@@ -192,14 +199,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             showProgress(true);
             mAuthTask = new UserLoginTask(email, password);
             mAuthTask.execute((Void) null);
-
-            //Usar API RESTFUL
-
-            //Fin Usar API RESTFUL
-
-            //Ir a la siguiente pantalla
-            Intent intent = new Intent(LoginActivity.this, TipoPerfilActivity.class);
-            startActivity(intent);
 
         }
     }
@@ -319,6 +318,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     public void onLoaderReset(Loader<Cursor> cursorLoader) {
 
     }
+
     //endregion
 
     //region clases
@@ -328,35 +328,50 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      */
     public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
 
-        private final String mEmail;
-        private final String mPassword;
+        private String mEmail;
+        private String mPassword;
 
         UserLoginTask(String email, String password) {
-            mEmail = email;
-            mPassword = password;
+            this.mEmail = email;
+            this.mPassword = password;
+
         }
 
         @Override
         protected Boolean doInBackground(Void... params) {
-            // TODO: attempt authentication against a network service.
 
-            /*try {
-                // Simulate network access...
+            UsuarioDTO objResult = new UsuarioDTO();
 
-            } catch (InterruptedException e) {
-                return false;
-            }*/
+            try {
 
-            for (String credential : DUMMY_CREDENTIALS) {
-                String[] pieces = credential.split(":");
-                if (pieces[0].equals(mEmail)) {
-                    // Account exists, return true if the password matches.
-                    return pieces[1].equals(mPassword);
+                Gson gson = new GsonBuilder()
+                        .setDateFormat("yyyy-MM-dd'T'HH:mm:ssZ")
+                        .create();
+
+                Retrofit retrofit = new Retrofit.Builder()
+                        .baseUrl(getApplicationContext().getString(R.string.api_rest_url))
+                        .addConverterFactory(GsonConverterFactory.create(gson))
+                        .build();
+
+                IUsuarioEndpoint endPoint = retrofit.create(IUsuarioEndpoint.class);
+
+                Call<UsuarioDTO> user = endPoint.getUserByLogon(this.mEmail, this.mPassword);
+                Response<UsuarioDTO> restData = user.execute();
+
+                if (restData.isSuccessful()) {
+                    objResult = restData.body();
+                    System.out.println("Retorno JSON "+objResult.toString() );
+                    System.out.println("Estado "+objResult.getIdEstado());
+                    return true;
+                }else{
+                    return false;
                 }
+
+            } catch (Exception e) {
+                System.out.println("Error tarea "+e.getMessage());
+               return false;
             }
 
-            // TODO: register the new account here.
-            return true;
         }
 
         @Override
@@ -365,9 +380,24 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             showProgress(false);
 
             if (success) {
-                finish();            } else {
-                mPasswordView.setError(getString(R.string.error_incorrect_password));
-                mPasswordView.requestFocus();
+                //Ir a la siguiente pantalla
+                Intent intent = new Intent(LoginActivity.this, TipoPerfilActivity.class);
+                startActivity(intent);
+
+            } else {
+
+                final Toast toast = Toast.makeText(LoginActivity.this, "Usted no esta registrado en el sistema o su clave es incorrecta", Toast.LENGTH_LONG);
+                toast.show();
+
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        toast.cancel();
+                    }
+                }, 2500);
+
+
             }
         }
 
