@@ -26,12 +26,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".TipoPerfilActivity" />
-        <activity android:name=".RegistrarMaestroActivity" />
-        <activity android:name=".PanelAdminMasterActivity" />
+        <activity android:name=".otros.TipoPerfilActivity" />
+        <activity android:name=".master.RegistrarMaestroActivity" />
+        <activity android:name=".master.PanelAdminMasterActivity" />
         <activity
-            android:name=".EstadoActualMasterActivity"
-            android:parentActivityName=".PanelAdminMasterActivity" />
+            android:name=".master.EstadoActualMasterActivity"
+            android:parentActivityName=".master.PanelAdminMasterActivity" />
         <activity
             android:name=".master.MainMasterActivity"
             android:parentActivityName=".login.LoginActivity" />
@@ -39,13 +39,13 @@
             android:name=".cliente.MainClienteActivity"
             android:parentActivityName=".login.LoginActivity" />
         <activity
-            android:name=".master.MenuMasterActivity"
-            android:parentActivityName=".master.MainMasterActivity"
-            />
-        <activity
-            android:name=".cliente.MenuClienteActivity"
+            android:name=".cliente.MainMenuClienteActivity"
             android:parentActivityName=".cliente.MainClienteActivity"
-            />
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".master.MainMenuMasterActivity"
+            android:label="@string/title_activity_main_menu_master"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

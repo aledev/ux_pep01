@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/men_buscar_master"
+            android:title="Buscar un Maestro" />
+        <item
+            android:id="@+id/men_nota_master"
+            android:title="¡Califica al maestro!" />
+        <item
+            android:id="@+id/men_editar_datos"
+            android:title="Editar tus datos" />
+        <item
+            android:id="@+id/men_ver_datos"
+            android:title="Ver tus datos" />
+        <item
+            android:id="@+id/men_cerrar_sesion"
+            android:title="Cerrar sesión" />
+    </group>
+
+
+</menu>

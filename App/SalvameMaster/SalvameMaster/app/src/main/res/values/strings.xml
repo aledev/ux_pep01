@@ -45,4 +45,11 @@
     <string name="pregunta_bienvenida_cliente">¡Queremos ayudarte!</string>
      
     <string name="boton_bienvenida_cliente">¡Comencemos!</string>
+    <string name="title_activity_main_menu_cliente">MainMenuClienteActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Configuracion</string>
+    <string name="title_activity_main_menu_master">MainMenuMasterActivity</string>
 </resources>

@@ -43,7 +43,7 @@ public class MainMasterActivity extends AppCompatActivity {
         btnComenzar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainMasterActivity.this, MenuMasterActivity.class);
+                Intent intent = new Intent(MainMasterActivity.this, MainMenuMasterActivity.class);
                 startActivity(intent);
             }
         });

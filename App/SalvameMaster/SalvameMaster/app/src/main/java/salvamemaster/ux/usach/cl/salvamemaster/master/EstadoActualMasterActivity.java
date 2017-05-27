@@ -1,8 +1,9 @@
-package salvamemaster.ux.usach.cl.salvamemaster;
+package salvamemaster.ux.usach.cl.salvamemaster.master;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import salvamemaster.ux.usach.cl.salvamemaster.R;
 
 
 public class EstadoActualMasterActivity extends AppCompatActivity {

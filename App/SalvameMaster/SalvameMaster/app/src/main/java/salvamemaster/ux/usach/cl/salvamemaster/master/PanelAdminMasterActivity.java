@@ -1,10 +1,12 @@
-package salvamemaster.ux.usach.cl.salvamemaster;
+package salvamemaster.ux.usach.cl.salvamemaster.master;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Button;
 import android.view.View;
+
+import salvamemaster.ux.usach.cl.salvamemaster.R;
 
 public class PanelAdminMasterActivity extends AppCompatActivity implements View.OnClickListener {
 
