@@ -33,4 +33,16 @@
     <string name="prompt_tiempo_ocupado">00:00</string> 
     <string name="nombre_boton_guardar_estado_actual">Guardar Estado</string> 
     <string name="api_rest_url">http://crateria01.canadacentral.cloudapp.azure.com/SalvameMaster/</string>
+    <!--Activity bienvenida master -->
+    <string name="mensaje_bienvenida_master">¡Bienvenido Master!</string>
+     
+    <string name="pregunta_bienvenida_master">¿A quienes salvaremos hoy?</string>
+     
+    <string name="boton_bienvenida_master">¡Comencemos!</string>
+    <!--Activity bienvenida cliente -->
+    <string name="mensaje_bienvenida_cliente">¡Hola amigo!</string>
+     
+    <string name="pregunta_bienvenida_cliente">¡Queremos ayudarte!</string>
+     
+    <string name="boton_bienvenida_cliente">¡Comencemos!</string>
 </resources>

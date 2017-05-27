@@ -18,7 +18,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".LoginActivity"
+            android:name=".login.LoginActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -31,8 +31,21 @@
         <activity android:name=".PanelAdminMasterActivity" />
         <activity
             android:name=".EstadoActualMasterActivity"
-            android:parentActivityName=".PanelAdminMasterActivity">
-        </activity>
+            android:parentActivityName=".PanelAdminMasterActivity" />
+        <activity
+            android:name=".master.MainMasterActivity"
+            android:parentActivityName=".login.LoginActivity" />
+        <activity
+            android:name=".cliente.MainClienteActivity"
+            android:parentActivityName=".login.LoginActivity" />
+        <activity
+            android:name=".master.MenuMasterActivity"
+            android:parentActivityName=".master.MainMasterActivity"
+            />
+        <activity
+            android:name=".cliente.MenuClienteActivity"
+            android:parentActivityName=".cliente.MainClienteActivity"
+            />
     </application>
 
 </manifest>

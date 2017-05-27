@@ -1,23 +1,18 @@
-package salvamemaster.ux.usach.cl.salvamemaster;
+package salvamemaster.ux.usach.cl.salvamemaster.login;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
-import android.app.PendingIntent;
-import android.content.Context;
 import android.content.pm.PackageManager;
-import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.app.LoaderManager.LoaderCallbacks;
-
 import android.content.CursorLoader;
 import android.content.Loader;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
-
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
@@ -33,30 +28,21 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.os.Handler;
-
 import java.util.ArrayList;
 import java.util.List;
 import android.content.Intent;
-import retrofit2.*;
-
 import salvamemaster.ux.usach.cl.endPoints.IUsuarioEndpoint;
 import salvamemaster.ux.usach.cl.entities.UsuarioDTO;
-
 import static android.Manifest.permission.READ_CONTACTS;
-import static android.Manifest.permission.SYSTEM_ALERT_WINDOW;
-
 import retrofit2.Call;
-import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-
+import salvamemaster.ux.usach.cl.salvamemaster.R;
+import salvamemaster.ux.usach.cl.salvamemaster.master.MainMasterActivity;
+import salvamemaster.ux.usach.cl.salvamemaster.cliente.MainClienteActivity;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-
-import android.app.AlertDialog;
-import android.content.DialogInterface;
-
 /**
  * A login screen that offers login via email/password.
  */
@@ -91,6 +77,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        this.setTitle("Login SalvameMaster");
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
         populateAutoComplete();
@@ -330,6 +317,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         private String mEmail;
         private String mPassword;
+        private UsuarioDTO usuarioDto;
 
         UserLoginTask(String email, String password) {
             this.mEmail = email;
@@ -340,7 +328,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         @Override
         protected Boolean doInBackground(Void... params) {
 
-            UsuarioDTO objResult = new UsuarioDTO();
+            usuarioDto = new UsuarioDTO();
 
             try {
 
@@ -359,9 +347,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 Response<UsuarioDTO> restData = user.execute();
 
                 if (restData.isSuccessful()) {
-                    objResult = restData.body();
-                    System.out.println("Retorno JSON "+objResult.toString() );
-                    System.out.println("Estado "+objResult.getIdEstado());
+                    usuarioDto = restData.body();
+                    System.out.println("Retorno JSON "+usuarioDto.toString() );
+                    System.out.println("Estado "+usuarioDto.getIdEstado());
                     return true;
                 }else{
                     return false;
@@ -380,9 +368,15 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             showProgress(false);
 
             if (success) {
-                //Ir a la siguiente pantalla
-                Intent intent = new Intent(LoginActivity.this, TipoPerfilActivity.class);
-                startActivity(intent);
+                //Segun el IdPersona puede ser Master o cliente
+                if(usuarioDto.getIdPersona() == 3){
+                    Intent intent = new Intent(LoginActivity.this, MainMasterActivity.class);
+                    startActivity(intent);
+                }else{
+                    Intent intent = new Intent(LoginActivity.this, MainClienteActivity.class);
+                    startActivity(intent);
+                }
+
 
             } else {
 
@@ -395,7 +389,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                     public void run() {
                         toast.cancel();
                     }
-                }, 2500);
+                }, 4000);
 
 
             }
