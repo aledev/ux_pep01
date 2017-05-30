@@ -1,4 +1,4 @@
-package salvamemaster.ux.usach.cl.salvamemaster.otros;
+package salvamemaster.ux.usach.cl.salvamemaster.general;
 
 import android.content.Context;
 import android.content.Intent;

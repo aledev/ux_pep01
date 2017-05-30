@@ -5,6 +5,7 @@
      <string name="prompt_email">Correo</string> 
     <string name="prompt_password">Contraseña</string> 
     <string name="action_sign_in">Ingresar</string> 
+    <string name="name_button_registrar">Registrarse</string> 
     <string name="action_sign_in_short">Registrarse</string> 
     <string name="error_invalid_email">Esta dirección de correo no es válida.</string> 
     <string name="error_invalid_password">Esta contraseña es demasiado corta.</string> 
@@ -52,4 +53,9 @@
 
     <string name="action_settings">Configuracion</string>
     <string name="title_activity_main_menu_master">MainMenuMasterActivity</string>
+    <!-- Activity Registrar Usuario -->
+    <string name="prompt_registro_correo">Email</string> 
+    <string name="prompt_registro_nombre">Nombre</string> 
+    <string name="prompt_registro_paterno">Apellido Paterno</string> 
+    <string name="prompt_registro_materno">Apellido Materno</string> 
 </resources>

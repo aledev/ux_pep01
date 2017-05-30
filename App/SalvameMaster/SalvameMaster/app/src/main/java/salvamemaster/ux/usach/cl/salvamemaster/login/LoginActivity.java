@@ -39,6 +39,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import salvamemaster.ux.usach.cl.salvamemaster.R;
+import salvamemaster.ux.usach.cl.salvamemaster.general.RegistroUsuarioActivity;
 import salvamemaster.ux.usach.cl.salvamemaster.master.MainMasterActivity;
 import salvamemaster.ux.usach.cl.salvamemaster.cliente.MainClienteActivity;
 import com.google.gson.Gson;
@@ -104,6 +105,15 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
+
+        Button btnRegistrarse = (Button) findViewById(R.id.btnRegistrar);
+        btnRegistrarse.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LoginActivity.this, RegistroUsuarioActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 

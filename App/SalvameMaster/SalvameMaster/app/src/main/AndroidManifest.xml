@@ -26,7 +26,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".otros.TipoPerfilActivity" />
+        <activity android:name=".general.TipoPerfilActivity" />
         <activity android:name=".master.RegistrarMaestroActivity" />
         <activity android:name=".master.PanelAdminMasterActivity" />
         <activity
@@ -45,7 +45,10 @@
         <activity
             android:name=".master.MainMenuMasterActivity"
             android:label="@string/title_activity_main_menu_master"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".general.RegistroUsuarioActivity"
+            android:parentActivityName=".login.LoginActivity"/>
     </application>
 
 </manifest>
