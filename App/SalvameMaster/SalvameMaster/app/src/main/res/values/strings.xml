@@ -12,7 +12,7 @@
     <string name="error_incorrect_password">La contraseña es incorrecta</string> 
     <string name="error_field_required">Este campo es requerido.</string> 
     <string name="permission_rationale">"Se necesitan permisos del contacto para entregar el correo completo." </string>
-    <string name="title_tipo_perfil">Seleccione el tipo de perfil</string> 
+    <string name="title_tipo_perfilx">Seleccione el tipo de perfil</string> 
     <string name="title_tipo_de_trabajo">¿Qué tipo de trabajo realiza?</string> 
     <string name="title_mensaje_foto">Ingrese su fotografía</string> 
     <string name="nombre_boton_subir_imagen">Subir imagen</string> 
@@ -58,4 +58,5 @@
     <string name="prompt_registro_nombre">Nombre</string> 
     <string name="prompt_registro_paterno">Apellido Paterno</string> 
     <string name="prompt_registro_materno">Apellido Materno</string> 
+    <string name="title_tipo_perfil">Seleccione su perfil</string> 
 </resources>
