@@ -34,13 +34,14 @@
                 android:gravity="center"
                 android:text="@string/title_tipo_perfil"/>
 
+            <Spinner
+                android:id="@+id/tipo_perfil_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/linear_cliente"/>
+
         </LinearLayout>
 
-        <Spinner
-            android:id="@+id/tipo_perfil_spinner"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/linear_cliente"/>
 
     </android.support.v7.widget.CardView>
 
@@ -116,6 +117,99 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/prompt_registro_materno"
+                    android:imeOptions="actionUnspecified"
+                    android:maxLines="1"
+                    android:textSize="16dp"
+                    android:drawableLeft="@mipmap/ic_key_grey600_18dp"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linear_maestro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="16dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignBottom="@id/tipo_trabajo_spinner"
+            android:visibility="invisible">
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/edit_email_maestro"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/prompt_registro_correo"
+                    android:imeOptions="actionUnspecified"
+                    android:maxLines="1"
+                    android:textSize="16dp"
+                    android:drawableLeft="@mipmap/ic_key_grey600_18dp"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/edit_nombre_maestro"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/prompt_registro_nombre"
+                    android:imeOptions="actionUnspecified"
+                    android:maxLines="1"
+                    android:textSize="16dp"
+                    android:drawableLeft="@mipmap/ic_key_grey600_18dp"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/edit_paterno_maestro"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/prompt_registro_paterno"
+                    android:imeOptions="actionUnspecified"
+                    android:maxLines="1"
+                    android:textSize="16dp"
+                    android:drawableLeft="@mipmap/ic_key_grey600_18dp"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/edit_materno_maestro"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/prompt_registro_materno"
+                    android:imeOptions="actionUnspecified"
+                    android:maxLines="1"
+                    android:textSize="16dp"
+                    android:drawableLeft="@mipmap/ic_key_grey600_18dp"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/edit_tarifa_maestro"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/prompt_registro_tarifa"
                     android:imeOptions="actionUnspecified"
                     android:maxLines="1"
                     android:textSize="16dp"

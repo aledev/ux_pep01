@@ -3,8 +3,12 @@ package salvamemaster.ux.usach.cl.salvamemaster.general;
 import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +21,8 @@ public class RegistroUsuarioActivity extends AppCompatActivity {
     ArrayList<String> tipoPerfil;
     MyAdapter mAdapter;
     Spinner spTipoPerfil;
+    LinearLayout lnCliente;
+    LinearLayout lnMaestro;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +42,32 @@ public class RegistroUsuarioActivity extends AppCompatActivity {
 
         mAdapter = new MyAdapter(this,android.R.layout.simple_list_item_1,tipoPerfil);
         spTipoPerfil.setAdapter(mAdapter);
+
+        lnCliente = (LinearLayout) findViewById(R.id.linear_cliente);
+        lnMaestro = (LinearLayout) findViewById(R.id.linear_maestro);
+
+        //Evento de selección
+        spTipoPerfil.setOnItemSelectedListener(new OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+
+                if(spTipoPerfil.getSelectedItem().toString().equals("Cliente")){
+                    lnCliente.setVisibility(View.VISIBLE);
+                    lnMaestro.setVisibility(View.INVISIBLE);
+                }else{
+                    lnCliente.setVisibility(View.INVISIBLE);
+                    lnMaestro.setVisibility(View.VISIBLE);
+
+                }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // your code here
+            }
+
+        });
 
     }
 

@@ -59,4 +59,5 @@
     <string name="prompt_registro_paterno">Apellido Paterno</string> 
     <string name="prompt_registro_materno">Apellido Materno</string> 
     <string name="title_tipo_perfil">Seleccione su perfil</string> 
+    <string name="prompt_registro_tarifa">Tarifa</string> 
 </resources>
