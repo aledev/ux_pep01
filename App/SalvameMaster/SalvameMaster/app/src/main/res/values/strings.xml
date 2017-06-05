@@ -60,4 +60,5 @@
     <string name="prompt_registro_materno">Apellido Materno</string> 
     <string name="title_tipo_perfil">Seleccione su perfil</string> 
     <string name="prompt_registro_tarifa">Tarifa</string> 
+    <string name="title_tomar_foto">Tomar foto</string> 
 </resources>

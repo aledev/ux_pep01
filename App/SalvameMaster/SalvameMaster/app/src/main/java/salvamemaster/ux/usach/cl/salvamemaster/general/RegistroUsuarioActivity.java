@@ -8,13 +8,21 @@ import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.AdapterView.OnItemSelectedListener;
-
+import android.content.Intent;
 import java.util.ArrayList;
 import java.util.List;
-
+import java.io.File;
+import android.os.Environment;
+import android.provider.MediaStore;
+import android.graphics.Bitmap;
 import salvamemaster.ux.usach.cl.salvamemaster.R;
-
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import android.net.Uri;
 
 public class RegistroUsuarioActivity extends AppCompatActivity {
 
@@ -23,6 +31,10 @@ public class RegistroUsuarioActivity extends AppCompatActivity {
     Spinner spTipoPerfil;
     LinearLayout lnCliente;
     LinearLayout lnMaestro;
+    private Button btnTomarFoto;
+    private ImageView imgMostrarFoto;
+    static final int REQUEST_IMAGE_CAPTURE = 1;
+    static final int REQUEST_TAKE_PHOTO = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +81,33 @@ public class RegistroUsuarioActivity extends AppCompatActivity {
 
         });
 
+        imgMostrarFoto = (ImageView)this.findViewById(R.id.imgMostrarFoto);
+        btnTomarFoto = (Button) this.findViewById(R.id.btnTomarFoto);
+
+        btnTomarFoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                // Ensure that there's a camera activity to handle the intent
+                if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+                    // Create the File where the photo should go
+                    File photoFile = null;
+                    try {
+                        photoFile = createImageFile();
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                    // Continue only if the File was successfully created
+                    if (photoFile != null) {
+                        takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(photoFile));
+                        startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
+                    }
+                }
+
+            }
+        });
+
     }
 
     @Override
@@ -81,5 +120,25 @@ public class RegistroUsuarioActivity extends AppCompatActivity {
         public MyAdapter(Context context, int resource, List<String> objects) {
             super(context, resource, objects);
         }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+            Bundle extras = data.getExtras();
+            Bitmap imageBitmap = (Bitmap) extras.get("data");
+            imgMostrarFoto.setImageBitmap(imageBitmap);
+        }
+    }
+
+    String mCurrentPhotoPath;
+    private File createImageFile() throws IOException {
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        String imageFileName = "JPEG_" + timeStamp + "_";
+        File storageDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+        File image = File.createTempFile(imageFileName,".jpg", storageDir);
+        // Save a file: path for use with ACTION_VIEW intents
+        mCurrentPhotoPath = "file:" + image.getAbsolutePath();
+        return image;
     }
 }
