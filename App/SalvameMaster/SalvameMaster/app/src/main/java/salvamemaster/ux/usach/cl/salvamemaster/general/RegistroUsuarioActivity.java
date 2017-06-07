@@ -1,8 +1,6 @@
 package salvamemaster.ux.usach.cl.salvamemaster.general;
 
-import android.app.Activity;
 import android.content.Context;
-import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -31,9 +29,9 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.app.ActivityCompat;
 import android.widget.Toast;
 import android.support.v4.app.ActivityCompat.OnRequestPermissionsResultCallback;
-import android.support.v4.content.FileProvider;
 import salvamemaster.ux.usach.cl.entities.RecursoDTO;
 import android.graphics.BitmapFactory;
+
 public class RegistroUsuarioActivity extends AppCompatActivity implements OnRequestPermissionsResultCallback   {
 
     ArrayList<String> tipoPerfil;
@@ -41,13 +39,13 @@ public class RegistroUsuarioActivity extends AppCompatActivity implements OnRequ
     Spinner spTipoPerfil;
     LinearLayout lnCliente;
     LinearLayout lnMaestro;
-    private Button btnTomarFoto;
-     ImageView imgMostrarFoto;
+    Button btnTomarFoto;
+    ImageView imgMostrarFoto;
     static final int REQUEST_IMAGE_CAPTURE = 1;
     static final int REQUEST_CODE_CAMERA=1;
-    static final int REQUEST_CODE_DISCO=1;
     static final int REQUEST_TAKE_PHOTO = 1;
     public RecursoDTO recursoMultimedia = new RecursoDTO();
+    File imagenTemporal=null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -123,20 +121,17 @@ public class RegistroUsuarioActivity extends AppCompatActivity implements OnRequ
 
                     Intent takePictureIntent = new Intent();
                     takePictureIntent.setAction(MediaStore.ACTION_IMAGE_CAPTURE);
-                    // Ensure that there's a camera activity to handle the intent
                     if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-                        // Create the File where the photo should go
-                        File photoFile = null;
+                        File archivoFoto=null;
                         try {
-                            photoFile = createImageFile();
+                            archivoFoto = crearFoto();
                         } catch (IOException ex) {
                             ex.printStackTrace();
                         }
-                        // Continue only if the File was successfully created
-                        if (photoFile != null) {
+                        if (archivoFoto != null) {
 
-                            recursoMultimedia.setFoto(photoFile);
-                            takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT,Uri.fromFile(photoFile));
+                            recursoMultimedia.setFoto(archivoFoto);
+                            takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT,Uri.fromFile(archivoFoto));
                             startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
                         }
                     }
@@ -154,33 +149,42 @@ public class RegistroUsuarioActivity extends AppCompatActivity implements OnRequ
     }
 
     private class MyAdapter extends ArrayAdapter<String> {
-        public MyAdapter(Context context, int resource, List<String> objects) {
+        private MyAdapter(Context context, int resource, List<String> objects) {
             super(context, resource, objects);
         }
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-            System.out.println("Entro a mostrar foto");
-            //Bitmap imageBitmap = (Bitmap) data.getExtras().get("data");
-            Bitmap imageBitMap = BitmapFactory.decodeFile(recursoMultimedia.getFoto().getPath());
-            imgMostrarFoto.setImageBitmap(imageBitMap);
-        }else{
-            System.out.println("No entro a mostrar foto");
+
+        try{
+
+            if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+                System.out.println("Entro a mostrar foto");
+                Bitmap imageBitMap = BitmapFactory.decodeFile(recursoMultimedia.getFoto().getPath());
+                imgMostrarFoto.setImageBitmap(imageBitMap);
+                imagenTemporal.deleteOnExit();
+            }else{
+                System.out.println("No entro a mostrar foto");
+            }
+
+        }catch(Exception e){
+            e.printStackTrace();
         }
+
     }
 
-    String mCurrentPhotoPath;
-    private File createImageFile() throws IOException {
+    private File crearFoto() throws IOException {
+
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         String imageFileName = "JPEG_" + timeStamp + "_";
         File storageDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
-        File image = File.createTempFile(imageFileName,".jpg", storageDir);
-        // Save a file: path for use with ACTION_VIEW intents
-        mCurrentPhotoPath = "file:" + image.getAbsolutePath();
-        return image;
+        imagenTemporal = File.createTempFile(imageFileName,".jpg", storageDir);
+
+        return imagenTemporal;
+
     }
+
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {

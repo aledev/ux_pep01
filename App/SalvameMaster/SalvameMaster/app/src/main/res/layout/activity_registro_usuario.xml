@@ -50,6 +50,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <ScrollView
+            android:id="@+id/scroll_form_registro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
         <LinearLayout
             android:id="@+id/linear_cliente"
             android:layout_width="match_parent"
@@ -124,6 +129,16 @@
 
             </android.support.design.widget.TextInputLayout>
 
+            <ImageView
+                android:id="@+id/imgMostrarFoto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/btnVerFoto"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:maxHeight="20dp"
+                android:maxWidth="10dp"/>
+
             <Button
                 android:id="@+id/btnTomarFoto"
                 android:layout_width="wrap_content"
@@ -132,15 +147,11 @@
                 android:layout_marginTop="26dp"
                 android:text="@string/title_tomar_foto"/>
 
-            <ImageView
-                android:id="@+id/imgMostrarFoto"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/btnVerFoto"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="20dp"/>
+
 
         </LinearLayout>
+
+        </ScrollView>
 
         <LinearLayout
             android:id="@+id/linear_maestro"
