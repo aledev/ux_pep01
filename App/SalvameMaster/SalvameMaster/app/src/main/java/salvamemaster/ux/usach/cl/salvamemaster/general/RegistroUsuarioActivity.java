@@ -3,6 +3,7 @@ package salvamemaster.ux.usach.cl.salvamemaster.general;
 import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
@@ -31,6 +32,7 @@ import android.widget.Toast;
 import android.support.v4.app.ActivityCompat.OnRequestPermissionsResultCallback;
 import salvamemaster.ux.usach.cl.entities.RecursoDTO;
 import android.graphics.BitmapFactory;
+import salvamemaster.ux.usach.cl.salvamemaster.util.ImageHelper;
 
 public class RegistroUsuarioActivity extends AppCompatActivity implements OnRequestPermissionsResultCallback   {
 
@@ -58,9 +60,8 @@ public class RegistroUsuarioActivity extends AppCompatActivity implements OnRequ
         int permissionCheckStorage = ContextCompat.checkSelfPermission(getBaseContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE);
 
         if((permissionCheckCamara == PackageManager.PERMISSION_GRANTED) && (permissionCheckStorage==PackageManager.PERMISSION_GRANTED)){
-            System.out.println("Camara y almacen con permisos");
+            Log.i("RegistroUsuarioActivity","Camara y almacen con permisos");
         }else{
-            System.out.println("Proceso para dar permiso a la camara y almacen");
             if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.CAMERA)) {
                 Toast.makeText(getBaseContext(), "El permiso es necesario para utilizar la cámara.", Toast.LENGTH_LONG).show();
             }
@@ -160,16 +161,26 @@ public class RegistroUsuarioActivity extends AppCompatActivity implements OnRequ
         try{
 
             if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-                System.out.println("Entro a mostrar foto");
+                Log.i("RegistroUsuarioActivity","Es posible ver la fotografía.");
                 Bitmap imageBitMap = BitmapFactory.decodeFile(recursoMultimedia.getFoto().getPath());
-                imgMostrarFoto.setImageBitmap(imageBitMap);
+
+                // Llama al método encargado de cortar en forma cuadrada a la imagen.
+                Bitmap croppedImage = ImageHelper.cropBitmapToSquare(imageBitMap);
+
+                // Llama al método encargado de redondear las esquinas de la imagen
+                // previamente cortada. Recibe como parámetros el mapa de bits y el tamaño // de sus lados en pixeles.
+                Bitmap roundedCornersImage = ImageHelper.getRoundedCornerBitmap(croppedImage, 120);
+
+                imgMostrarFoto.setImageBitmap(roundedCornersImage);
+                imgMostrarFoto.getLayoutParams().height=400;
+                imgMostrarFoto.getLayoutParams().width=400;
                 imagenTemporal.deleteOnExit();
             }else{
-                System.out.println("No entro a mostrar foto");
+                Log.w("RegistroUsuarioActivity","No fue posible visualizar la fotografía.");
             }
 
         }catch(Exception e){
-            e.printStackTrace();
+            Log.e("RegistroUsuarioActivity",e.getMessage());
         }
 
     }
@@ -191,9 +202,7 @@ public class RegistroUsuarioActivity extends AppCompatActivity implements OnRequ
         switch (requestCode) {
             case REQUEST_CODE_CAMERA:
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    // Permiso aceptado
-                    //abrirCamara();
-                    System.out.println("Es posible utilizar la camara y disco");
+                    Log.i("RegistroUsuarioActivity","Es posible utilizar la camara y disco");
                 }else{
                     // Permiso denegado
                     Toast.makeText(getBaseContext(), "No se ha aceptado el permiso", Toast.LENGTH_SHORT).show();
