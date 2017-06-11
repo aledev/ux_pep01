@@ -1,5 +1,9 @@
 package salvamemaster.ux.usach.cl.salvamemaster.general;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.support.annotation.Nullable;
 import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -24,8 +28,6 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import android.net.Uri;
-import android.content.pm.PackageManager;
-import android.Manifest;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.app.ActivityCompat;
 import android.widget.Toast;
@@ -34,7 +36,12 @@ import salvamemaster.ux.usach.cl.entities.RecursoDTO;
 import android.graphics.BitmapFactory;
 import salvamemaster.ux.usach.cl.salvamemaster.util.ImageHelper;
 
-public class RegistroUsuarioActivity extends AppCompatActivity implements OnRequestPermissionsResultCallback   {
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.LocationServices;
+
+public class RegistroUsuarioActivity extends AppCompatActivity
+        implements OnRequestPermissionsResultCallback,GoogleApiClient.OnConnectionFailedListener, GoogleApiClient.ConnectionCallbacks {
 
     ArrayList<String> tipoPerfil;
     MyAdapter mAdapter;
@@ -48,12 +55,20 @@ public class RegistroUsuarioActivity extends AppCompatActivity implements OnRequ
     static final int REQUEST_TAKE_PHOTO = 1;
     public RecursoDTO recursoMultimedia = new RecursoDTO();
     File imagenTemporal=null;
+    private static final int PETICION_PERMISO_LOCALIZACION = 101;
+    private GoogleApiClient apiClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro_usuario);
         this.setTitle("Registrarse");
+
+        apiClient = new GoogleApiClient.Builder(this)
+                .enableAutoManage(this, this)
+                .addConnectionCallbacks(this)
+                .addApi(LocationServices.API)
+                .build();
 
         //Gestionar permisos para camara y almacen de fotos
         int permissionCheckCamara = ContextCompat.checkSelfPermission(getBaseContext(), Manifest.permission.CAMERA);
@@ -208,11 +223,55 @@ public class RegistroUsuarioActivity extends AppCompatActivity implements OnRequ
                     Toast.makeText(getBaseContext(), "No se ha aceptado el permiso", Toast.LENGTH_SHORT).show();
                 }
                 return;
+            case PETICION_PERMISO_LOCALIZACION:
+                if (grantResults.length == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                    Log.i("RegistroUsuarioActivity","Permiso concedido");
+                    @SuppressWarnings("MissingPermission")
+                    Location lastLocation = LocationServices.FusedLocationApi.getLastLocation(apiClient);
+                    updateUI(lastLocation);
+                }else{
+                    Log.e("RegistroUsuarioActivity","Permiso denegado");
+                }
+                return;
             // Gestionar el resto de permisos
             default:
                 super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         }
 
     }
+
+    @Override
+    public void onConnectionFailed(ConnectionResult result) {
+        Log.e("RegistroUsuarioActivity", "Error grave al conectar con Google Play Services");
+    }
+
+    @Override
+    public void onConnected(@Nullable Bundle bundle) {
+        Log.i("RegistroUsuarioActivity","Conectado correctamente a Google Play Services");
+
+        if (ActivityCompat.checkSelfPermission(this,Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, PETICION_PERMISO_LOCALIZACION);
+        }else{
+              Location lastLocation = LocationServices.FusedLocationApi.getLastLocation(apiClient);
+              updateUI(lastLocation);
+        }
+    }
+
+    @Override
+    public void onConnectionSuspended(int i) {
+        Log.e("RegistroUsuarioActivity", "Se ha interrumpido la conexión con Google Play Services");
+    }
+
+    private void updateUI(Location loc) {
+        if (loc != null) {
+            Log.i("RegistroUsuarioActivity","Latitud "+loc.getLatitude());
+            Log.i("RegistroUsuarioActivity","Longitud"+loc.getLongitude());
+        } else {
+            Log.w("RegistroUsuarioActivity","Latitud desconocida");
+            Log.w("RegistroUsuarioActivity","Longitud desconocida");
+        }
+    }
+
+
 
 }
