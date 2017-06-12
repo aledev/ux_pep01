@@ -34,11 +34,11 @@ import android.widget.Toast;
 import android.support.v4.app.ActivityCompat.OnRequestPermissionsResultCallback;
 import salvamemaster.ux.usach.cl.entities.RecursoDTO;
 import android.graphics.BitmapFactory;
-import salvamemaster.ux.usach.cl.salvamemaster.util.ImageHelper;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationServices;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class RegistroUsuarioActivity extends AppCompatActivity
         implements OnRequestPermissionsResultCallback,GoogleApiClient.OnConnectionFailedListener, GoogleApiClient.ConnectionCallbacks {
@@ -128,7 +128,8 @@ public class RegistroUsuarioActivity extends AppCompatActivity
 
         });
 
-        imgMostrarFoto = (ImageView) this.findViewById(R.id.imgMostrarFoto);
+        imgMostrarFoto = (CircleImageView) this.findViewById(R.id.imgMostrarFoto);
+
         btnTomarFoto = (Button) this.findViewById(R.id.btnTomarFoto);
 
         btnTomarFoto.setOnClickListener(new View.OnClickListener() {
@@ -178,17 +179,7 @@ public class RegistroUsuarioActivity extends AppCompatActivity
             if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
                 Log.i("RegistroUsuarioActivity","Es posible ver la fotografía.");
                 Bitmap imageBitMap = BitmapFactory.decodeFile(recursoMultimedia.getFoto().getPath());
-
-                // Llama al método encargado de cortar en forma cuadrada a la imagen.
-                Bitmap croppedImage = ImageHelper.cropBitmapToSquare(imageBitMap);
-
-                // Llama al método encargado de redondear las esquinas de la imagen
-                // previamente cortada. Recibe como parámetros el mapa de bits y el tamaño // de sus lados en pixeles.
-                Bitmap roundedCornersImage = ImageHelper.getRoundedCornerBitmap(croppedImage, 120);
-
-                imgMostrarFoto.setImageBitmap(roundedCornersImage);
-                imgMostrarFoto.getLayoutParams().height=400;
-                imgMostrarFoto.getLayoutParams().width=400;
+                imgMostrarFoto.setImageBitmap(imageBitMap);
                 imagenTemporal.deleteOnExit();
             }else{
                 Log.w("RegistroUsuarioActivity","No fue posible visualizar la fotografía.");
