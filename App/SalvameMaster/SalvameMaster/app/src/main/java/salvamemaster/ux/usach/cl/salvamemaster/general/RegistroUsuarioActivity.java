@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -46,10 +47,12 @@ public class RegistroUsuarioActivity extends AppCompatActivity
     ArrayList<String> tipoPerfil;
     MyAdapter mAdapter;
     Spinner spTipoPerfil;
-    LinearLayout lnCliente;
-    LinearLayout lnMaestro;
+    CardView lnCliente;
+    CardView lnMaestro;
     Button btnTomarFoto;
     ImageView imgMostrarFoto;
+    Button btnTomarFotoMaestro;
+    ImageView imgMostrarFotoMaestro;
     static final int REQUEST_IMAGE_CAPTURE = 1;
     static final int REQUEST_CODE_CAMERA=1;
     static final int REQUEST_TAKE_PHOTO = 1;
@@ -102,8 +105,8 @@ public class RegistroUsuarioActivity extends AppCompatActivity
         mAdapter = new MyAdapter(this, android.R.layout.simple_list_item_1, tipoPerfil);
         spTipoPerfil.setAdapter(mAdapter);
 
-        lnCliente = (LinearLayout) findViewById(R.id.linear_cliente);
-        lnMaestro = (LinearLayout) findViewById(R.id.linear_maestro);
+        lnCliente = (CardView) findViewById(R.id.card_view_usuario);
+        lnMaestro = (CardView) findViewById(R.id.card_view_maestro);
 
         //Evento de selección
         spTipoPerfil.setOnItemSelectedListener(new OnItemSelectedListener() {
@@ -116,7 +119,6 @@ public class RegistroUsuarioActivity extends AppCompatActivity
                 } else {
                     lnCliente.setVisibility(View.INVISIBLE);
                     lnMaestro.setVisibility(View.VISIBLE);
-
                 }
 
             }
@@ -148,6 +150,7 @@ public class RegistroUsuarioActivity extends AppCompatActivity
                         if (archivoFoto != null) {
 
                             recursoMultimedia.setFoto(archivoFoto);
+                            recursoMultimedia.setPerfil("Cliente");
                             takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT,Uri.fromFile(archivoFoto));
                             startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
                         }
@@ -155,6 +158,34 @@ public class RegistroUsuarioActivity extends AppCompatActivity
 
             }
 
+        });
+
+        imgMostrarFotoMaestro = (CircleImageView) this.findViewById(R.id.imgMostrarFotoMaestro);
+
+        btnTomarFotoMaestro = (Button) this.findViewById(R.id.btnTomarFotoMaestro);
+
+        btnTomarFotoMaestro.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent takePictureIntent = new Intent();
+                takePictureIntent.setAction(MediaStore.ACTION_IMAGE_CAPTURE);
+                if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+                    File archivoFoto=null;
+                    try {
+                        archivoFoto = crearFoto();
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                    if (archivoFoto != null) {
+
+                        recursoMultimedia.setFoto(archivoFoto);
+                        recursoMultimedia.setPerfil("Maestro");
+                        takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT,Uri.fromFile(archivoFoto));
+                        startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
+                    }
+                }
+            }
         });
 
     }
@@ -179,7 +210,13 @@ public class RegistroUsuarioActivity extends AppCompatActivity
             if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
                 Log.i("RegistroUsuarioActivity","Es posible ver la fotografía.");
                 Bitmap imageBitMap = BitmapFactory.decodeFile(recursoMultimedia.getFoto().getPath());
-                imgMostrarFoto.setImageBitmap(imageBitMap);
+
+                if(recursoMultimedia.getPerfil().equals("Cliente")){
+                    imgMostrarFoto.setImageBitmap(imageBitMap);
+                }else{
+                    imgMostrarFotoMaestro.setImageBitmap(imageBitMap);
+                }
+
                 imagenTemporal.deleteOnExit();
             }else{
                 Log.w("RegistroUsuarioActivity","No fue posible visualizar la fotografía.");
