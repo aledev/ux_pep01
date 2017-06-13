@@ -1,4 +1,4 @@
-package salvamemaster.ux.usach.cl.salvamemaster.master.fragmentos;
+package salvamemaster.ux.usach.cl.salvamemaster.cliente.fragmento;
 
 import android.content.Context;
 import android.net.Uri;
@@ -10,23 +10,22 @@ import android.view.ViewGroup;
 
 import salvamemaster.ux.usach.cl.salvamemaster.R;
 
-public class FragmentVerDatosMaestro extends Fragment{
+public class FragmentCalificarMaestro extends Fragment {
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
 
-    public FragmentVerDatosMaestro() {
+    public FragmentCalificarMaestro() {
 
     }
 
-    public static FragmentVerDatosMaestro newInstance(String param1, String param2) {
-        FragmentVerDatosMaestro fragment = new FragmentVerDatosMaestro();
+    public static FragmentCalificarMaestro newInstance(String param1, String param2) {
+        FragmentCalificarMaestro fragment = new FragmentCalificarMaestro();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -37,19 +36,17 @@ public class FragmentVerDatosMaestro extends Fragment{
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_fragment_ver_datos_maestro, container, false);
-
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_fragment_calificar_maestro, container, false);
     }
 
     public void onButtonPressed(Uri uri) {
@@ -66,6 +63,7 @@ public class FragmentVerDatosMaestro extends Fragment{
     }
 
     public interface OnFragmentInteractionListener {
+        // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
 }

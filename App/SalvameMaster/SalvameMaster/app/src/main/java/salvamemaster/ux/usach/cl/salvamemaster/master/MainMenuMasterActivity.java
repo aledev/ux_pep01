@@ -3,9 +3,6 @@ package salvamemaster.ux.usach.cl.salvamemaster.master;
 import android.support.v4.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -16,9 +13,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import salvamemaster.ux.usach.cl.salvamemaster.R;
 import salvamemaster.ux.usach.cl.salvamemaster.login.LoginActivity;
-import salvamemaster.ux.usach.cl.salvamemaster.master.fragmentos.FragmentEditarDatosMaestro;
-import salvamemaster.ux.usach.cl.salvamemaster.master.fragmentos.FragmentEstadoActual;
-import salvamemaster.ux.usach.cl.salvamemaster.master.fragmentos.FragmentVerDatosMaestro;
+import salvamemaster.ux.usach.cl.salvamemaster.master.fragmento.FragmentEditarDatosMaestro;
+import salvamemaster.ux.usach.cl.salvamemaster.master.fragmento.FragmentEstadoActual;
+import salvamemaster.ux.usach.cl.salvamemaster.master.fragmento.FragmentVerDatosMaestro;
 
 public class MainMenuMasterActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {

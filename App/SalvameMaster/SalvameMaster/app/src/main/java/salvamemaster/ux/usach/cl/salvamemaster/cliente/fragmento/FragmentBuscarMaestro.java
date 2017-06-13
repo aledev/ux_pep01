@@ -1,4 +1,4 @@
-package salvamemaster.ux.usach.cl.salvamemaster.master.fragmentos;
+package salvamemaster.ux.usach.cl.salvamemaster.cliente.fragmento;
 
 import android.content.Context;
 import android.net.Uri;
@@ -10,22 +10,22 @@ import android.view.ViewGroup;
 
 import salvamemaster.ux.usach.cl.salvamemaster.R;
 
-public class FragmentEditarDatosMaestro extends Fragment {
+public class FragmentBuscarMaestro extends Fragment {
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
     private OnFragmentInteractionListener mListener;
 
-    public FragmentEditarDatosMaestro() {
-
+    public FragmentBuscarMaestro() {
+        // Required empty public constructor
     }
-    public static FragmentEditarDatosMaestro newInstance(String param1, String param2) {
-        FragmentEditarDatosMaestro fragment = new FragmentEditarDatosMaestro();
+
+    public static FragmentBuscarMaestro newInstance(String param1, String param2) {
+        FragmentBuscarMaestro fragment = new FragmentBuscarMaestro();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -46,7 +46,7 @@ public class FragmentEditarDatosMaestro extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_fragment_editar_datos_maestro, container, false);
+        return inflater.inflate(R.layout.fragment_fragment_buscar_maestro, container, false);
     }
 
     public void onButtonPressed(Uri uri) {
@@ -61,7 +61,9 @@ public class FragmentEditarDatosMaestro extends Fragment {
         mListener = null;
     }
 
+
     public interface OnFragmentInteractionListener {
+        
         void onFragmentInteraction(Uri uri);
     }
 }

@@ -67,10 +67,16 @@
     <string name="title_activity_ejemplo_boton_flotante">EjemploBotonFlotanteActivity</string> 
     <string name="title_tipo_profesion">¿Cuál es su oficio?</string>
     <!-- fragmento datos del maestro -->
-    <string name="mensaje_fragmento_datos_master">Esta opción esta en mantención</string>
-    <string name="descripcion_fragmento_datos_master">Permite ver los datos ingresados por el maestro</string>
-    <string name="descripcion_fragmento_estado_master">Permite ver el estado del maestro. Puede estar ocupado o disponible</string>
+    <string name="mensaje_fragmento_datos_master">Esta opción esta en mantención.</string>
+    <string name="descripcion_fragmento_datos_master">Permite ver los datos ingresados por el maestro.</string>
+    <string name="descripcion_fragmento_estado_master">Permite ver el estado del maestro. Puede estar ocupado o disponible.</string>
     <string name="descripcion_fragmento_editar_datos_master">Permite editar los datos ingresados.</string>
     <string name="descripcion_fragmento_editar_estado_master">Permite editar el estado actual del maestro.</string>
+    <!-- fragmento datos del cliente -->
+    <string name="mensaje_fragmento_datos_cliente">Esta opción esta en mantención</string>
+    <string name="descripcion_fragmento_datos_cliente">Permite ver los datos ingresados por el cliente.</string>
+    <string name="descripcion_fragmento_editar_cliente">Permite editar los datos del cliente.</string>
+    <string name="descripcion_fragmento_buscar_master">Permite buscar maestros.</string>
+    <string name="descripcion_fragmento_calificar_master">Permite calificar maestros despues de realizar el trabajo.</string>
 
 </resources>

@@ -1,6 +1,5 @@
-package salvamemaster.ux.usach.cl.salvamemaster.master.fragmentos;
+package salvamemaster.ux.usach.cl.salvamemaster.master.fragmento;
 
-import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -10,7 +9,7 @@ import android.view.ViewGroup;
 
 import salvamemaster.ux.usach.cl.salvamemaster.R;
 
-public class FragmentEditarEstadoActual extends Fragment {
+public class FragmentVerDatosMaestro extends Fragment{
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -21,12 +20,12 @@ public class FragmentEditarEstadoActual extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public FragmentEditarEstadoActual() {
+    public FragmentVerDatosMaestro() {
 
     }
 
-    public static FragmentEditarEstadoActual newInstance(String param1, String param2) {
-        FragmentEditarEstadoActual fragment = new FragmentEditarEstadoActual();
+    public static FragmentVerDatosMaestro newInstance(String param1, String param2) {
+        FragmentVerDatosMaestro fragment = new FragmentVerDatosMaestro();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -37,25 +36,27 @@ public class FragmentEditarEstadoActual extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_fragment_editar_estado_actual, container, false);
+        return inflater.inflate(R.layout.fragment_fragment_ver_datos_maestro, container, false);
+
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
         }
     }
+
 
     @Override
     public void onDetach() {

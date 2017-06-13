@@ -2,15 +2,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="salvamemaster.ux.usach.cl.salvamemaster.master.fragmento.FragmentEditarEstadoActual">
+    tools:context="salvamemaster.ux.usach.cl.salvamemaster.cliente.fragmento.FragmentBuscarMaestro">
 
     <android.support.v7.widget.CardView
-        android:id="@+id/card_view_estado_maestro"
+        android:id="@+id/card_view_bsucar_maestro"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <LinearLayout
-            android:id="@+id/linear_editar_estado_maestro"
+            android:id="@+id/linear_buscar_maestro"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -23,18 +23,18 @@
                 android:src="@mipmap/ic_wrench_grey600_48dp" />
 
             <TextView
-                android:id="@+id/txtTituloBienvenidaMaster"
+                android:id="@+id/txtTituloBienvenidaCliente"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
                 android:textAlignment="center"
-                android:text="@string/mensaje_fragmento_datos_master"/>
+                android:text="@string/mensaje_fragmento_datos_cliente"/>
 
             <TextView
-                android:id="@+id/txtDescripcionEditarEstadoMaster"
+                android:id="@+id/txtDescripcionBuscarMaster"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/descripcion_fragmento_editar_estado_master"
+                android:text="@string/descripcion_fragmento_buscar_master"
                 android:textAlignment="center"
                 android:textSize="20sp" />
 
