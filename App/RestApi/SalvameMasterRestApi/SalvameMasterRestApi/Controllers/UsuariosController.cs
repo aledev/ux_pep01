@@ -5,6 +5,7 @@ using SalvameMasterRestApi.Models.Entities;
 using SalvameMasterRestApi.src.Utils;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -21,6 +22,7 @@ namespace SalvameMasterRestApi.Controllers
         #endregion
 
         #region metodos publicos
+        #region Usuario Get
         public System.Web.Http.Results.JsonResult<UsuarioDTO> Get(string user, string pass)
         {
             UsuarioDTO userObj = null;
@@ -114,29 +116,35 @@ namespace SalvameMasterRestApi.Controllers
             catch (Exception ex)
             {
                 var methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
-                log.Error(string.Format("{0} {2} => {3}", this.GetType().Name, methodName, "Error"), ex);
+                log.Error(string.Format("{0} {1} => {2}", this.GetType().Name, methodName, "Error"), ex);
             }
 
             return Json(userObj, new JsonSerializerSettings() { DateFormatString = "yyyy-MM-ddTHH:mm:ssZ" });
         }
+        #endregion
 
+        #region Usuario Post
+        [HttpPost]
         // POST: api/Usuarios
-        public string Post([FromBody]string value)
+        public string Post(HttpRequestMessage request)
         {
             string jsonResult = string.Empty;
+            MessageReturnDTO messageObj = new MessageReturnDTO();
 
             try
             {
+                string value = request.Content.ReadAsStringAsync().Result;
                 UsuarioDTO userObj = JsonConvert.DeserializeObject<UsuarioDTO>(value);
 
                 using (var dbContext = new salvameMasterEntities())
                 {
                     using (var trx = new TransactionScope())
                     {
-                        var objExists = dbContext.Persona.Where(p => p.Email == userObj.Persona.Email && 
+                        var objExists = dbContext.Persona.Where(p => p.Email == userObj.Persona.Email &&
                                                                 p.IdEstado == (short)EnumUtils.Estado.Habilitado).FirstOrDefault();
 
-                        if (objExists != null)
+                        // Validamos que el correo no exista en DB
+                        if (objExists == null)
                         {
                             // Creamos el objeto persona en DB
                             var objPersona = dbContext.Persona.Add(new Persona
@@ -194,39 +202,84 @@ namespace SalvameMasterRestApi.Controllers
                                 userObj.Trabajador.Id = objTrabajador.Id;
                                 userObj.Trabajador.IdPersona = objPersona.Id;
                             }
-
+                            // Completamos la transacción
                             trx.Complete();
 
-                            jsonResult = JsonConvert.SerializeObject(new { resultado = true, mensaje = "OK", datos = "" });
+                            messageObj = new MessageReturnDTO
+                            {
+                                Resultado = true,
+                                Mensaje = "OK"
+                            };
                         }
                         else
                         {
-                            jsonResult = JsonConvert.SerializeObject(new { resultado = false, mensaje = "El email ya esta registrado" });
+                            messageObj = new MessageReturnDTO
+                            {
+                                Resultado = false,
+                                Mensaje = "El email ya esta registrado"
+                            };
                         }
+
+                        jsonResult = JsonConvert.SerializeObject(messageObj);
                     }
                 }
+            }
+            catch (SqlException sqlEx)
+            {
+                var methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
+                log.Error(string.Format("{0} {1} => {2}", this.GetType().Name, methodName, "Error"), sqlEx);
+
+                messageObj = new MessageReturnDTO
+                {
+                    Resultado = false,
+                    Mensaje = "Error al intentar crear el usuario."
+                };
+
+                if (sqlEx.Errors != null)
+                {
+                    List<string> erroresList = new List<string>();
+
+                    for (int x = 0; x < sqlEx.Errors.Count; x++)
+                        erroresList.Add(sqlEx.Errors[x].Message);
+
+                    messageObj.Errores = erroresList;
+                }
+
+                jsonResult = JsonConvert.SerializeObject(messageObj);
             }
             catch (Exception ex)
             {
                 var methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
-                log.Error(string.Format("{0} {2} => {3}", this.GetType().Name, methodName, "Error"), ex);
+                log.Error(string.Format("{0} {1} => {2}", this.GetType().Name, methodName, "Error"), ex);
 
-                jsonResult = JsonConvert.SerializeObject(new { resultado = false, mensaje = "Error al intentar crear el usuario" });
+                messageObj = new MessageReturnDTO
+                {
+                    Resultado = false,
+                    Mensaje = "Error al intentar crear el usuario."
+                };
+
+                jsonResult = JsonConvert.SerializeObject(messageObj);
             }
 
             return jsonResult;
         }
+        #endregion
 
+        #region Usuario Put
         // PUT: api/Usuarios/5
         public void Put(int id, [FromBody]string value)
         {
 
         }
+        #endregion
 
+        #region Usuario Delete
         // DELETE: api/Usuarios/5
         public void Delete(int id)
         {
         }
+        #endregion
+
         #endregion
     }
 }

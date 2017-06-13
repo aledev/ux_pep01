@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    tools:context="salvamemaster.ux.usach.cl.salvamemaster.cliente.BuscarMasterListaItemDetalleCliente">
+
+    <ImageView
+        android:id="@+id/fotoMaestroDetalle"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"
+        android:contentDescription="Foto Maestro" />
+
+    <LinearLayout
+        android:id="@+id/infoSectionDetalle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/fotoMaestroDetalle"
+        android:textAlignment="center"
+        android:layout_marginBottom="15sp"
+        android:layout_marginLeft="50sp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/nombreMaestroDetalle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="Nombre Completo"
+            android:textColor="@color/colorPrimaryDark"
+            android:textStyle="bold"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/descripcionMaestroDetalle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="Descripción"
+            android:textColor="@color/colorPrimary"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/direccionMaestroDetalle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="Dirección"
+            android:textColor="@color/colorPrimary"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/contactoSectionDetalle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50sp"
+        android:layout_below="@+id/infoSectionDetalle"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/contactoPrice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:textStyle="bold"
+            android:text="Información de Contacto:"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/contactoTelefono"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/contactoPrice"
+            android:layout_marginRight="25dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:text="Teléfono: 5691234567"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/contactoEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/contactoTelefono"
+            android:textColor="@color/colorPrimaryDark"
+            android:text="Email: xxxyyzzz"
+            android:textSize="14sp"/>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/priceSectionDetalle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10sp"
+        android:layout_marginLeft="50sp"
+        android:layout_below="@+id/contactoSectionDetalle"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/priceDetalle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:textColor="@color/colorAccent"
+            android:textStyle="bold"
+            android:text="Precios:"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/precioVisitaDetalle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/priceDetalle"
+            android:layout_marginRight="25dp"
+            android:textColor="@color/colorAccent"
+            android:text="Precio Visita: $1.000"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/precioHoraDetalle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/priceDetalle"
+            android:layout_toRightOf="@id/precioVisitaDetalle"
+            android:textColor="@color/colorAccent"
+            android:text="Precio Hora: $1.000"
+            android:textSize="14sp"/>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="50sp"
+        android:layout_below="@+id/priceSectionDetalle">
+
+        <Button
+            android:id="@+id/btnLlamarMaestro"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:width="250sp"
+            android:layout_marginLeft="50sp"
+            android:text="Llamar" />
+
+    </LinearLayout>
+
+</RelativeLayout>

@@ -38,7 +38,7 @@ namespace SalvameMasterRestApi.Controllers
             catch (Exception ex)
             {
                 var methodName = System.Reflection.MethodBase.GetCurrentMethod().Name;
-                log.Error(string.Format("{0} {2} => {3}", this.GetType().Name, methodName, "Error"), ex);
+                log.Error(string.Format("{0} {1} => {2}", this.GetType().Name, methodName, "Error"), ex);
             }
 
             return Json(regionList);

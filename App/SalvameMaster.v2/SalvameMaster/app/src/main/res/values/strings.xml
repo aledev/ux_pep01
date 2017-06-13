@@ -1,0 +1,68 @@
+<resources>
+    <string name="app_name">SalvameMaster</string>
+    <string name="title_activity_login">Inicio de sesión</string>  
+    <!-- Strings related to login -->
+     <string name="prompt_email">Correo</string> 
+    <string name="prompt_password">Contraseña</string> 
+    <string name="action_sign_in">Ingresar</string> 
+    <string name="name_button_registrar">Registrarse</string> 
+    <string name="action_sign_in_short">Registrarse</string> 
+    <string name="error_invalid_email">Esta dirección de correo no es válida.</string> 
+    <string name="error_invalid_password">Esta contraseña es demasiado corta.</string> 
+    <string name="error_incorrect_password">La contraseña es incorrecta</string> 
+    <string name="error_field_required">Este campo es requerido.</string> 
+    <string name="permission_rationale">"Se necesitan permisos del contacto para entregar el correo completo." </string>
+    <string name="title_tipo_perfilx">Seleccione el tipo de perfil</string> 
+    <string name="title_tipo_de_trabajo">¿Qué tipo de trabajo realiza?</string> 
+    <string name="title_mensaje_foto">Ingrese su fotografía</string> 
+    <string name="nombre_boton_subir_imagen">Subir imagen</string> 
+    <string name="title_mensaje_tarifa">Ingrese valor de su tarifa por hora</string> 
+    <string name="prompt_tarifa">$ Tarifa</string> 
+    <string name="action_tarifa">Registrarse</string> 
+    <string name="title_mensaje_anio_experiencia">Elija sus años de experiencia</string> 
+    <string name="nombre_ingresar_maestro">Aceptar</string> 
+    <!-- Activity Admin Master -->
+    <string name="nombre_boton_mis_trabajos">Mis Trabajos</string> 
+    <string name="nombre_boton_perfil">Mi Perfil</string> 
+    <string name="nombre_boton_feed_back">Mi FeedBack</string> 
+    <string name="nombre_boton_estado_actual">Mi Estado Actual</string> 
+    <!-- Activity Estado Actual Master-->
+    <string name="title_mensaje_estado_actual">Seleccione Estado Actual</string> 
+    <string name="nombre_boton_desocupado">Desocupado</string> 
+    <string name="nombre_boton_ocupado">Ocupado</string> 
+    <string name="title_mensaje_tiempo_aproximado">Tiempo Aproximado</string> 
+    <string name="prompt_tiempo_ocupado">00:00</string> 
+    <string name="nombre_boton_guardar_estado_actual">Guardar Estado</string> 
+    <string name="api_rest_url">http://crateria01.canadacentral.cloudapp.azure.com/SalvameMaster/</string>
+    <!--Activity bienvenida master -->
+    <string name="mensaje_bienvenida_master">¡Bienvenido Master!</string>
+     
+    <string name="pregunta_bienvenida_master">¿A quienes salvaremos hoy?</string>
+     
+    <string name="boton_bienvenida_master">¡Comencemos!</string>
+    <!--Activity bienvenida cliente -->
+    <string name="mensaje_bienvenida_cliente">¡Hola amigo!</string>
+     
+    <string name="pregunta_bienvenida_cliente">¡Queremos ayudarte!</string>
+     
+    <string name="boton_bienvenida_cliente">¡Comencemos!</string>
+    <string name="title_activity_main_menu_cliente">MainMenuClienteActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Configuracion</string>
+    <string name="title_activity_main_menu_master">MainMenuMasterActivity</string>
+    <!-- Activity Registrar Usuario -->
+    <string name="prompt_registro_correo">Email</string> 
+    <string name="prompt_registro_nombre">Nombre</string> 
+    <string name="prompt_registro_paterno">Apellido Paterno</string> 
+    <string name="prompt_registro_materno">Apellido Materno</string> 
+    <string name="title_tipo_perfil">Seleccione su perfil</string> 
+    <string name="prompt_registro_tarifa">Tarifa</string> 
+    <string name="title_tomar_foto">Tomar foto</string>
+    <string name="title_activitybuscarmasterlistacliente_list">Lista Maestros</string>
+    <string name="title_activitybuscarmasterlistacliente_detail">activity_buscarmaster_lista_cliente
+        Detail
+    </string> 
+</resources>
