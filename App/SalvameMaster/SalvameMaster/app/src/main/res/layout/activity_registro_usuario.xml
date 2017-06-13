@@ -52,7 +52,7 @@
         android:layout_height="wrap_content">
 
         <ScrollView
-            android:id="@+id/scroll_form_registro"
+            android:id="@+id/scroll_registro_cliente"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -76,9 +76,10 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/prompt_registro_correo"
                     android:imeOptions="actionUnspecified"
+                    android:inputType="textEmailAddress"
                     android:maxLines="1"
                     android:textSize="16dp"
-                    android:drawableLeft="@mipmap/ic_key_grey600_18dp"/>
+                    android:drawableLeft="@mipmap/ic_account_circle_grey600_18dp"/>
 
             </android.support.design.widget.TextInputLayout>
 
@@ -92,6 +93,7 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/prompt_registro_nombre"
                     android:imeOptions="actionUnspecified"
+                    android:inputType="textPersonName"
                     android:maxLines="1"
                     android:textSize="16dp"
                     android:drawableLeft="@mipmap/ic_key_grey600_18dp"/>
@@ -108,9 +110,10 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/prompt_registro_paterno"
                     android:imeOptions="actionUnspecified"
+                    android:inputType="textPersonName"
                     android:maxLines="1"
                     android:textSize="16dp"
-                    android:drawableLeft="@mipmap/ic_key_grey600_18dp"/>
+                    android:drawableLeft="@mipmap/ic_account_plus_grey600_18dp"/>
 
             </android.support.design.widget.TextInputLayout>
 
@@ -123,10 +126,28 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/prompt_registro_materno"
+                    android:inputType="textPersonName"
                     android:imeOptions="actionUnspecified"
                     android:maxLines="1"
                     android:textSize="16dp"
-                    android:drawableLeft="@mipmap/ic_key_grey600_18dp"/>
+                    android:drawableLeft="@mipmap/ic_account_plus_grey600_18dp"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/edit_celular_cliente"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/prompt_registro_celular"
+                    android:imeOptions="actionUnspecified"
+                    android:inputType="phone"
+                    android:maxLines="1"
+                    android:textSize="16dp"
+                    android:drawableLeft="@mipmap/ic_phone_grey600_18dp"/>
 
             </android.support.design.widget.TextInputLayout>
 
@@ -153,17 +174,10 @@
 
         </ScrollView>
 
-    </android.support.v7.widget.CardView>
-
-    <android.support.v7.widget.CardView
-        android:id="@+id/card_view_maestro"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="10dp">
+        <!-- Maestro -->
 
         <ScrollView
-            android:id="@+id/scroll_form_registro_maestro"
+            android:id="@+id/scroll_registro_maestro"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -175,21 +189,48 @@
             android:gravity="center"
             android:padding="16dp"
             android:layout_alignParentBottom="true"
-            android:layout_alignBottom="@id/card_view_usuario">
+            android:layout_alignBottom="@id/tipo_trabajo_spinner">
+
+            <LinearLayout
+                android:id="@+id/linear_profesion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:padding="16dp">
+
+                <TextView
+                    android:id="@+id/txtTituloProfesion"
+                    style="?android:attr/spinnerItemStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/title_tipo_profesion"/>
+
+                <Spinner
+                    android:id="@+id/tipo_profesion"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@+id/contenedor_edit_email_master"/>
+
+            </LinearLayout>
 
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/contenedor_edit_email_master"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tipo_profesion" >
 
                 <EditText
                     android:id="@+id/edit_email_maestro"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/prompt_registro_correo"
+                    android:inputType="textEmailAddress"
                     android:imeOptions="actionUnspecified"
                     android:maxLines="1"
                     android:textSize="16dp"
-                    android:drawableLeft="@mipmap/ic_key_grey600_18dp"/>
+                    android:drawableLeft="@mipmap/ic_account_circle_grey600_18dp"/>
 
             </android.support.design.widget.TextInputLayout>
 
@@ -204,8 +245,9 @@
                     android:hint="@string/prompt_registro_nombre"
                     android:imeOptions="actionUnspecified"
                     android:maxLines="1"
+                    android:inputType="textPersonName"
                     android:textSize="16dp"
-                    android:drawableLeft="@mipmap/ic_key_grey600_18dp"/>
+                    android:drawableLeft="@mipmap/ic_account_plus_grey600_18dp"/>
 
             </android.support.design.widget.TextInputLayout>
 
@@ -218,10 +260,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/prompt_registro_paterno"
+                    android:inputType="textPersonName"
                     android:imeOptions="actionUnspecified"
                     android:maxLines="1"
                     android:textSize="16dp"
-                    android:drawableLeft="@mipmap/ic_key_grey600_18dp"/>
+                    android:drawableLeft="@mipmap/ic_account_plus_grey600_18dp"/>
 
             </android.support.design.widget.TextInputLayout>
 
@@ -233,11 +276,29 @@
                     android:id="@+id/edit_materno_maestro"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
                     android:hint="@string/prompt_registro_materno"
                     android:imeOptions="actionUnspecified"
                     android:maxLines="1"
                     android:textSize="16dp"
-                    android:drawableLeft="@mipmap/ic_key_grey600_18dp"/>
+                    android:drawableLeft="@mipmap/ic_account_plus_grey600_18dp"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/edit_celular_maestro"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/prompt_registro_celular"
+                    android:imeOptions="actionUnspecified"
+                    android:inputType="phone"
+                    android:maxLines="1"
+                    android:textSize="16dp"
+                    android:drawableLeft="@mipmap/ic_phone_grey600_18dp"/>
 
             </android.support.design.widget.TextInputLayout>
 
@@ -250,12 +311,58 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/prompt_registro_tarifa"
+                    android:inputType="number"
                     android:imeOptions="actionUnspecified"
                     android:maxLines="1"
-                    android:textSize="16dp"
-                    android:drawableLeft="@mipmap/ic_key_grey600_18dp"/>
+                    android:textSize="16dp"/>
 
             </android.support.design.widget.TextInputLayout>
+
+            <!-- Layout para el rango de horas -->
+            <LinearLayout
+                android:id="@+id/linear_rango_horario"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="left|center">
+
+                 <android.support.design.widget.TextInputLayout
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/edit_horario_maestro_ini"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/prompt_registro_horario_ini"
+                        android:imeOptions="actionUnspecified"
+                        android:inputType="time"
+                        android:maxLines="1"
+                        android:textSize="16dp"
+                        android:drawableLeft="@mipmap/ic_timer_grey600_18dp"/>
+
+
+                 </android.support.design.widget.TextInputLayout>
+
+                 <android.support.design.widget.TextInputLayout
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/edit_horario_maestro_fin"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/prompt_registro_horario_fin"
+                        android:imeOptions="actionUnspecified"
+                        android:inputType="time"
+                        android:maxLines="1"
+                        android:textSize="16dp"
+                        android:drawableLeft="@mipmap/ic_timer_grey600_18dp"/>
+
+                </android.support.design.widget.TextInputLayout>
+
+            </LinearLayout>
+            <!-- Fin Layout del rango de horas -->
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:layout_width="100dp"
@@ -271,13 +378,24 @@
                 android:layout_width="70dp"
                 android:layout_height="55dp"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="80dp"
                 android:drawableTop="@mipmap/ic_camera_black_36dp"/>
 
         </LinearLayout>
 
         </ScrollView>
 
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab_guardar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="@dimen/fab_margin"
+            app:srcCompat="@android:drawable/ic_input_add" />
+
     </android.support.v7.widget.CardView>
+
+
 
 </LinearLayout>

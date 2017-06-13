@@ -5,13 +5,16 @@ import android.content.pm.PackageManager;
 import android.location.Location;
 import android.support.annotation.Nullable;
 import android.content.Context;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -35,24 +38,32 @@ import android.widget.Toast;
 import android.support.v4.app.ActivityCompat.OnRequestPermissionsResultCallback;
 import salvamemaster.ux.usach.cl.entities.RecursoDTO;
 import android.graphics.BitmapFactory;
-
+import android.support.design.widget.FloatingActionButton;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationServices;
 import de.hdodenhof.circleimageview.CircleImageView;
 
+import salvamemaster.ux.usach.cl.salvamemaster.util.MaskWatcher;
+
 public class RegistroUsuarioActivity extends AppCompatActivity
         implements OnRequestPermissionsResultCallback,GoogleApiClient.OnConnectionFailedListener, GoogleApiClient.ConnectionCallbacks {
 
     ArrayList<String> tipoPerfil;
+    ArrayList<String> tipoProfesion;
     MyAdapter mAdapter;
+    MyAdapter mAdapterTipoProfesion;
     Spinner spTipoPerfil;
-    CardView lnCliente;
-    CardView lnMaestro;
+    Spinner spTipoProfesion;
+    ScrollView lnCliente;
+    ScrollView lnMaestro;
     Button btnTomarFoto;
     ImageView imgMostrarFoto;
     Button btnTomarFotoMaestro;
     ImageView imgMostrarFotoMaestro;
+    EditText editHoraInicio;
+    EditText editHoraTermino;
+
     static final int REQUEST_IMAGE_CAPTURE = 1;
     static final int REQUEST_CODE_CAMERA=1;
     static final int REQUEST_TAKE_PHOTO = 1;
@@ -105,8 +116,8 @@ public class RegistroUsuarioActivity extends AppCompatActivity
         mAdapter = new MyAdapter(this, android.R.layout.simple_list_item_1, tipoPerfil);
         spTipoPerfil.setAdapter(mAdapter);
 
-        lnCliente = (CardView) findViewById(R.id.card_view_usuario);
-        lnMaestro = (CardView) findViewById(R.id.card_view_maestro);
+        lnCliente = (ScrollView) findViewById(R.id.scroll_registro_cliente);
+        lnMaestro = (ScrollView) findViewById(R.id.scroll_registro_maestro);
 
         //Evento de selección
         spTipoPerfil.setOnItemSelectedListener(new OnItemSelectedListener() {
@@ -188,12 +199,46 @@ public class RegistroUsuarioActivity extends AppCompatActivity
             }
         });
 
+        //formato hora
+        editHoraInicio = (EditText) this.findViewById(R.id.edit_horario_maestro_ini);
+        editHoraInicio.addTextChangedListener(new MaskWatcher("##:##"));
+
+        editHoraTermino = (EditText) this.findViewById(R.id.edit_horario_maestro_fin);
+        editHoraTermino.addTextChangedListener(new MaskWatcher("##:##"));
+
+        //Cargar tipo de profesion
+        spTipoProfesion = (Spinner) findViewById(R.id.tipo_profesion);
+
+        if (savedInstanceState == null) {
+            tipoProfesion = new ArrayList<>();
+            tipoProfesion.add("Carpintero");
+            tipoProfesion.add("Cerrajero");
+            tipoProfesion.add("Mecánico");
+        } else {
+            tipoProfesion = savedInstanceState.getStringArrayList("tipoProfesion");
+        }
+
+        mAdapterTipoProfesion = new MyAdapter(this, android.R.layout.simple_list_item_1, tipoProfesion);
+        spTipoProfesion.setAdapter(mAdapterTipoProfesion);
+
+        //Botón registrar usuario (Cliente  o Maestro)
+        FloatingActionButton btnGuardar = (FloatingActionButton) findViewById(R.id.fab_guardar);
+        btnGuardar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Usar ApiResFul para almacenar usuario(Cliente o Maestro)
+                Snackbar.make(view, "Creación del usuario", Snackbar.LENGTH_LONG)
+                        .setAction("Acción", null).show();
+            }
+        });
+
     }
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putStringArrayList("tipoPerfil", tipoPerfil);
+        outState.putStringArrayList("tipoProfesion", tipoProfesion);
     }
 
     private class MyAdapter extends ArrayAdapter<String> {

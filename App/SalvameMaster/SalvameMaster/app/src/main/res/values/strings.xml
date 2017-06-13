@@ -61,4 +61,9 @@
     <string name="title_tipo_perfil">Seleccione su perfil</string> 
     <string name="prompt_registro_tarifa">Tarifa</string> 
     <string name="title_tomar_foto">Tomar foto</string> 
+    <string name="prompt_registro_horario_ini">Hora inicio</string> 
+    <string name="prompt_registro_horario_fin">Hora termino</string> 
+    <string name="prompt_registro_celular">Número telefónico</string>
+    <string name="title_activity_ejemplo_boton_flotante">EjemploBotonFlotanteActivity</string> 
+    <string name="title_tipo_profesion">¿Cuál es su oficio?</string> 
 </resources>
