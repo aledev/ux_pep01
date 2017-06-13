@@ -27,17 +27,7 @@ public class MainMasterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_master);
         this.setTitle("Master");
-/*
-        mPlanetTitles = getResources().getStringArray(R.array.planets_array);
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        mDrawerList = (ListView) findViewById(R.id.listaMenuMaster);
 
-        // Set the adapter for the list view
-        mDrawerList.setAdapter(new ArrayAdapter<String>(this,
-                R.layout.activity_main_cliente , mPlanetTitles));
-        // Set the list's click listener
-        mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
-*/
         btnComenzar = (Button) findViewById(R.id.btnComenzarMaster);
 
         btnComenzar.setOnClickListener(new View.OnClickListener() {

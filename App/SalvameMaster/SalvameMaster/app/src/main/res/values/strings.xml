@@ -65,5 +65,8 @@
     <string name="prompt_registro_horario_fin">Hora termino</string> 
     <string name="prompt_registro_celular">Número telefónico</string>
     <string name="title_activity_ejemplo_boton_flotante">EjemploBotonFlotanteActivity</string> 
-    <string name="title_tipo_profesion">¿Cuál es su oficio?</string> 
+    <string name="title_tipo_profesion">¿Cuál es su oficio?</string>
+    <!-- fragmento datos del maestro -->
+    <string name="mensaje_fragmento_datos_master">Esta opción esta en mantención</string>
+
 </resources>

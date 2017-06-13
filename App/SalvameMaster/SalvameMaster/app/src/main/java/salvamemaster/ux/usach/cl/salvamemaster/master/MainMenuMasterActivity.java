@@ -1,5 +1,6 @@
 package salvamemaster.ux.usach.cl.salvamemaster.master;
 
+import android.support.v4.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -15,6 +16,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import salvamemaster.ux.usach.cl.salvamemaster.R;
 import salvamemaster.ux.usach.cl.salvamemaster.login.LoginActivity;
+import salvamemaster.ux.usach.cl.salvamemaster.master.fragmentos.FragmentEstadoActual;
+import salvamemaster.ux.usach.cl.salvamemaster.master.fragmentos.FragmentVerDatosMaestro;
 
 public class MainMenuMasterActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -69,27 +72,22 @@ public class MainMenuMasterActivity extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
+
+        Fragment fragmento = null;
+
         int id = item.getItemId();
 
         if(id == R.id.men_cerrar_sesion){
             Intent intent = new Intent(MainMenuMasterActivity.this, LoginActivity.class);
             startActivity(intent);
+        }else if(id == R.id.men_ver_datos){
+            fragmento = new FragmentVerDatosMaestro();
+            getSupportFragmentManager().beginTransaction().replace(R.id.contenedor_menu_master,fragmento).commit();
+        }else if(id == R.id.men_ver_estado){
+            fragmento = new FragmentEstadoActual();
+            getSupportFragmentManager().beginTransaction().replace(R.id.contenedor_menu_master,fragmento).commit();
         }
-        /*if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
 
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
-        }
-        */
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
