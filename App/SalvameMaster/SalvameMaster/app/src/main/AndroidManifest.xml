@@ -27,12 +27,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".general.TipoPerfilActivity" />
-        <activity android:name=".master.RegistrarMaestroActivity" />
-        <activity android:name=".master.PanelAdminMasterActivity" />
-        <activity
-            android:name=".master.EstadoActualMasterActivity"
-            android:parentActivityName=".master.PanelAdminMasterActivity" />
         <activity
             android:name=".master.MainMasterActivity"
             android:parentActivityName=".login.LoginActivity" />

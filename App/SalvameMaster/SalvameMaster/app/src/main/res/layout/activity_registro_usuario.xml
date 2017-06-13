@@ -64,7 +64,7 @@
             android:gravity="center"
             android:padding="16dp"
             android:layout_alignParentBottom="true"
-            android:layout_alignBottom="@id/tipo_trabajo_spinner">
+            android:layout_alignBottom="@id/tipo_perfil_spinner">
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
@@ -189,7 +189,7 @@
             android:gravity="center"
             android:padding="16dp"
             android:layout_alignParentBottom="true"
-            android:layout_alignBottom="@id/tipo_trabajo_spinner">
+            android:layout_alignBottom="@id/tipo_perfil_spinner">
 
             <LinearLayout
                 android:id="@+id/linear_profesion"
