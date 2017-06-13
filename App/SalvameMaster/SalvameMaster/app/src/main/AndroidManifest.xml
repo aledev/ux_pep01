@@ -46,4 +46,8 @@
             android:parentActivityName=".login.LoginActivity" />
     </application>
 
+    <activity android:name=".cliente.BuscarMasterClienteActivity" />
+    <activity android:name=".cliente.BuscarMasterListaClienteActivity" />
+    <activity android:name=".cliente.BuscarMasterListaItemDetalleCliente"></activity>
+
 </manifest>

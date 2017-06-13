@@ -15,11 +15,11 @@ public class UsuarioDTO {
     @SerializedName("IdPersona")
     private long idPersona;
 
-    //@SerializedName("IdPersona")
-    //private PersonaDTO _persona;
+    @SerializedName("Persona")
+    private PersonaDTO persona;
 
-    //[JsonProperty("Trabajador")]
-    //private TrabajadorDTO _trabajador;
+    @SerializedName("Trabajador")
+    private TrabajadorDTO trabajador;
 
     @SerializedName("Password")
     private String password;
@@ -43,7 +43,7 @@ public class UsuarioDTO {
     public UsuarioDTO(long id, long idPersona, String password, Date fchCreate, short idEstado){
         this.id = id;
         this.idPersona = idPersona;
-        this.password = password;
+        this.setPassword(password);
         this.fchCreate = fchCreate;
         this.idEstado = idEstado;
     }
@@ -94,4 +94,19 @@ public class UsuarioDTO {
         return "Id Persona "+idPersona;
     }
 
+    public PersonaDTO getPersona() {
+        return persona;
+    }
+
+    public void setPersona(PersonaDTO persona) {
+        this.persona = persona;
+    }
+
+    public TrabajadorDTO getTrabajador() {
+        return trabajador;
+    }
+
+    public void setTrabajador(TrabajadorDTO trabajador) {
+        this.trabajador = trabajador;
+    }
 }

@@ -55,6 +55,7 @@
     <string name="title_activity_main_menu_master">MainMenuMasterActivity</string>
     <!-- Activity Registrar Usuario -->
     <string name="prompt_registro_correo">Email</string> 
+    <string name="prompt_registro_password">Contraseña</string> 
     <string name="prompt_registro_nombre">Nombre</string> 
     <string name="prompt_registro_paterno">Apellido Paterno</string> 
     <string name="prompt_registro_materno">Apellido Materno</string> 

@@ -88,6 +88,23 @@
                 android:layout_height="wrap_content">
 
                 <EditText
+                    android:id="@+id/edit_password_cliente"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/prompt_registro_password"
+                    android:imeOptions="actionUnspecified"
+                    android:inputType="textPassword"
+                    android:maxLines="1"
+                    android:textSize="16dp"
+                    android:drawableLeft="@mipmap/ic_key_grey600_18dp"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
                     android:id="@+id/edit_nombre"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -233,6 +250,24 @@
                     android:drawableLeft="@mipmap/ic_account_circle_grey600_18dp"/>
 
             </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/edit_password_master"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/prompt_registro_password"
+                    android:imeOptions="actionUnspecified"
+                    android:inputType="textPassword"
+                    android:maxLines="1"
+                    android:textSize="16dp"
+                    android:drawableLeft="@mipmap/ic_key_grey600_18dp"/>
+
+            </android.support.design.widget.TextInputLayout>
+
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"

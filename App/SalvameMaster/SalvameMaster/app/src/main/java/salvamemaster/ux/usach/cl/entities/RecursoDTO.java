@@ -13,6 +13,12 @@ public class RecursoDTO {
     private ByteArrayOutputStream fotoMemoria;
     private String perfil;
 
+    public String getPerfil() {
+        return perfil;
+    }
+    public void setPerfil(String perfil) {
+        this.perfil = perfil;
+    }
     public File getFoto() {
         return foto;
     }
@@ -27,13 +33,5 @@ public class RecursoDTO {
 
     public void setFotoMemoria(ByteArrayOutputStream fotoMemoria) {
         this.fotoMemoria = fotoMemoria;
-    }
-
-    public String getPerfil() {
-        return perfil;
-    }
-
-    public void setPerfil(String perfil) {
-        this.perfil = perfil;
     }
 }
