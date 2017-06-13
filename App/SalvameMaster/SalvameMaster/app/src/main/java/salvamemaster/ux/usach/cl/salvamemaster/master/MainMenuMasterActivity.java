@@ -16,6 +16,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import salvamemaster.ux.usach.cl.salvamemaster.R;
 import salvamemaster.ux.usach.cl.salvamemaster.login.LoginActivity;
+import salvamemaster.ux.usach.cl.salvamemaster.master.fragmentos.FragmentEditarDatosMaestro;
 import salvamemaster.ux.usach.cl.salvamemaster.master.fragmentos.FragmentEstadoActual;
 import salvamemaster.ux.usach.cl.salvamemaster.master.fragmentos.FragmentVerDatosMaestro;
 
@@ -84,6 +85,12 @@ public class MainMenuMasterActivity extends AppCompatActivity
             fragmento = new FragmentVerDatosMaestro();
             getSupportFragmentManager().beginTransaction().replace(R.id.contenedor_menu_master,fragmento).commit();
         }else if(id == R.id.men_ver_estado){
+            fragmento = new FragmentEstadoActual();
+            getSupportFragmentManager().beginTransaction().replace(R.id.contenedor_menu_master,fragmento).commit();
+        }else if(id == R.id.men_editar_datos){
+            fragmento = new FragmentEditarDatosMaestro();
+            getSupportFragmentManager().beginTransaction().replace(R.id.contenedor_menu_master,fragmento).commit();
+        }else if(id==R.id.men_editar_estado) {
             fragmento = new FragmentEstadoActual();
             getSupportFragmentManager().beginTransaction().replace(R.id.contenedor_menu_master,fragmento).commit();
         }

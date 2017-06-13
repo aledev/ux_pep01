@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 
 import salvamemaster.ux.usach.cl.salvamemaster.R;
 
-public class FragmentVerDatosMaestro extends Fragment{
+public class FragmentEditarEstadoActual extends Fragment {
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -21,12 +21,12 @@ public class FragmentVerDatosMaestro extends Fragment{
 
     private OnFragmentInteractionListener mListener;
 
-    public FragmentVerDatosMaestro() {
+    public FragmentEditarEstadoActual() {
 
     }
 
-    public static FragmentVerDatosMaestro newInstance(String param1, String param2) {
-        FragmentVerDatosMaestro fragment = new FragmentVerDatosMaestro();
+    public static FragmentEditarEstadoActual newInstance(String param1, String param2) {
+        FragmentEditarEstadoActual fragment = new FragmentEditarEstadoActual();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -37,27 +37,25 @@ public class FragmentVerDatosMaestro extends Fragment{
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_fragment_ver_datos_maestro, container, false);
-
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_fragment_editar_estado_actual, container, false);
     }
 
+    // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
         }
     }
-
 
     @Override
     public void onDetach() {

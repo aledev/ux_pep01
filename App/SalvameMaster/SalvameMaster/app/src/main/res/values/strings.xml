@@ -68,5 +68,9 @@
     <string name="title_tipo_profesion">¿Cuál es su oficio?</string>
     <!-- fragmento datos del maestro -->
     <string name="mensaje_fragmento_datos_master">Esta opción esta en mantención</string>
+    <string name="descripcion_fragmento_datos_master">Permite ver los datos ingresados por el maestro</string>
+    <string name="descripcion_fragmento_estado_master">Permite ver el estado del maestro. Puede estar ocupado o disponible</string>
+    <string name="descripcion_fragmento_editar_datos_master">Permite editar los datos ingresados.</string>
+    <string name="descripcion_fragmento_editar_estado_master">Permite editar el estado actual del maestro.</string>
 
 </resources>

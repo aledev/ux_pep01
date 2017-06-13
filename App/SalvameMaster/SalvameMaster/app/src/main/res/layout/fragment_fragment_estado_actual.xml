@@ -13,22 +13,30 @@
             android:id="@+id/linear_datos_maestro"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:gravity="center"
+            android:orientation="vertical"
             android:padding="16dp">
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/ic_worker_grey600_48dp" />
+                android:src="@mipmap/ic_wrench_grey600_48dp" />
 
             <TextView
                 android:id="@+id/txtTituloEstadoMaster"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
+                android:text="@string/mensaje_fragmento_datos_master"
                 android:textAlignment="center"
-                android:text="@string/mensaje_fragmento_datos_master"/>
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/txtDescripcionEstadoMaster"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/descripcion_fragmento_estado_master"
+                android:textAlignment="center"
+                android:textSize="20sp" />
 
         </LinearLayout>
 

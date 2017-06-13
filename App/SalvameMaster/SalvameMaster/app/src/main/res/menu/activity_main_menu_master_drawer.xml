@@ -5,15 +5,18 @@
         <item
             android:id="@+id/men_ver_estado"
             android:title="Ver estado" />
+
+        <item
+            android:id="@+id/men_ver_datos"
+            android:title="Ver tus datos" />
+
         <item
             android:id="@+id/men_editar_estado"
             android:title="Edita tu estado de disponibilidad" />
         <item
             android:id="@+id/men_editar_datos"
             android:title="Editar tus datos" />
-        <item
-            android:id="@+id/men_ver_datos"
-            android:title="Ver tus datos" />
+
         <item
             android:id="@+id/men_cerrar_sesion"
             android:title="Cerrar sesión" />
